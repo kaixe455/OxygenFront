@@ -19,6 +19,9 @@ import { IntroducirResultadoComponent } from './admin-panel/introducir-resultado
 import { CrearUsuarioComponent } from './admin-panel/crear-usuario/crear-usuario.component';
 import { TopBarComponent } from './shared/header/top-bar/top-bar.component';
 import { NavbarComponent } from './shared/header/navbar/navbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,11 +41,14 @@ import { NavbarComponent } from './shared/header/navbar/navbar.component';
     IntroducirResultadoComponent,
     CrearUsuarioComponent,
     TopBarComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,30 @@
+padding-top-3 {
+  padding-top: 3rem;
+}
+
+.menu-btn {
+    color:#999;
+    padding:10px 20px;
+    font-size:18px;
+    text-decoration:none;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.menu-btn:hover {
+  border:none;
+  background:#00b4f2;
+  padding:20px 20px #000;
+  color:#fff;
+}
+
+.oxy-menu * {
+	-webkit-transition-property: all;
+  transition-property: all;
+	-webkit-transition-duration: .2s;
+  transition-duration: .2s;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+  transition-timing-function: cubic-bezier(100,50,21,6);
+	-moz-transition-property: all;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+}

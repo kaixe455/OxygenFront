@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NoticiaService } from 'src/app/services/noticia.service';
 
 @Component({
   selector: 'app-ultimas-noticias',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UltimasNoticiasComponent implements OnInit {
 
-  constructor() { }
+  ultimasNoticias : any
+
+  constructor(private noticiasService : NoticiaService) { }
 
   ngOnInit(): void {
+
+    this.obtenerUltimasNoticias();
+  }
+
+  obtenerUltimasNoticias() {
+    this.noticiasService.getNoticiasAll().subscribe(data => {
+      this.ultimasNoticias = data;
+    });
   }
 
 }
