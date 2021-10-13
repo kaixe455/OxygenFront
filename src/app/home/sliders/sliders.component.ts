@@ -11,22 +11,15 @@ import { SliderService } from 'src/app/services/slider.service';
 })
 export class SlidersComponent implements OnInit {
 
-  sliders: any
+  sliders: Slider[] = []
+  sliders$!: Observable<Slider[]>;
 
   constructor(private sliderService : SliderService, private router: Router) {
    }
 
   ngOnInit(): void {
-
-    this.recargarDatos();
-  }
-
-  recargarDatos()  {
-    this.sliderService.getSliders().subscribe(data => {
-      this.sliders = data;
-      console.log(this.sliders);
-    });
-
+    this.sliders$ = this.sliderService.getSliders();
+    this.sliders$.subscribe(sliders => this.sliders = sliders);
   }
 
 }
