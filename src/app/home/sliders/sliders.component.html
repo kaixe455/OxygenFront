@@ -7,7 +7,7 @@
   <div class="carousel-inner">
     <div class="carousel-item" style="background-image: url('data:image/png;base64,{{slider.imagen}}')"
     *ngFor="let slider of sliders$ | async ; let first = first; let last = last"
-    [ngClass]="{'active': first }" data-bs-interval="3000">
+    [ngClass]="{'active': first }" data-bs-interval="4000">
       <div class="container">
         <div class="carousel-caption" [ngClass]="{'text-start': first, 'text-end': last }">
           <h1>{{slider.nombre}}</h1>
