@@ -18,3 +18,21 @@ body {
     font-size: 3.5rem;
   }
 }
+
+.btn-oxygen {
+  color: #fff !important;
+  background-color: #00b4f2 !important;
+  border-color: #00b4f2 !important;
+}
+
+.btn-oxygen:hover {
+  color: #fff !important;
+  background-color: #0d7ad4 !important;
+  border-color: #0d7ad4 !important;
+}
+
+.margin-15 {
+  margin:15px;
+}
+
+
