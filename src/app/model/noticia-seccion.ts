@@ -1,6 +1,6 @@
 import { Categoria } from "./categoria";
 
-export interface NoticiaHome {
+export interface NoticiaSeccion {
   id:                number;
   titulo:            string;
   subtitulo:         string;

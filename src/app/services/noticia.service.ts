@@ -14,4 +14,12 @@ export class NoticiaService {
   getNoticiasAll() : Observable<any> {
     return this.http.get(this.restUrl+'noticiasHome');
   }
+
+  getAllNoticiasSeccion() : Observable<any> {
+    return this.http.get(this.restUrl+'noticiasSeccion');
+  }
+
+  getNoticiasPorCategoria(id : number) : Observable<any> {
+    return this.http.get(this.restUrl+'noticiasporcategoria/'+id);
+  }
 }

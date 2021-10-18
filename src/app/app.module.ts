@@ -22,6 +22,9 @@ import { NavbarComponent } from './shared/header/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NoticiacardComponent } from './noticias/noticiacard/noticiacard.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,13 +45,16 @@ import { HttpClientModule } from '@angular/common/http';
     CrearUsuarioComponent,
     TopBarComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    NoticiacardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

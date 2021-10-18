@@ -1,0 +1,8 @@
+.fondoNoticiaHover:hover {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.815);
+  cursor: pointer;
+}
+.fondoNoticiaHover {
+   transition: box-shadow 0.5s ease;
+   cursor: pointer;
+}
