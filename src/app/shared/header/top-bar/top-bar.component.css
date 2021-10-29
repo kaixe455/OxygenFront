@@ -4,3 +4,15 @@
 .socialIcon {
   color: white !important;
 }
+
+.img-perfil {
+  width: 50px;
+  max-height: 70px;
+  border-radius: 30px;
+  padding:3px;
+  margin-left: 10px;
+}
+
+.nombreUsuario {
+  margin-left: 4px;
+}
