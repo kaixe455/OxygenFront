@@ -63,7 +63,7 @@ export class NoticiacardComponent implements OnInit {
   }
 
   obtenerTodas() {
-    this.noticias$ = this.noticiasService.getAllNoticiasSeccion();
+    this.noticias$ = this.noticiasService.getAllNoticias();
     this.noticias$.subscribe(noticias => this.noticias = noticias);
   }
 

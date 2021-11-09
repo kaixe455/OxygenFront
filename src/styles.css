@@ -60,4 +60,12 @@ body {
 	}
 }
 
+.table-header-oxygen {
+  background-color: #00b4f2;
+  border-top-left-radius:10px ;
+  border-top-right-radius:10px ;
+  color: white;
+
+}
+
 

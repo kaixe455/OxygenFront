@@ -1,0 +1,36 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>AÑADIR EQUIPO</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form #crearEquipoForm="ngForm" class="mt-2">
+        <div class="mb-3">
+          <label for="camboNombre" class="form-label">Nombre del Equipo</label>
+          <input type="text" class="form-control" [(ngModel)]="equipo.nombre" name="nombre"
+          #nombre="ngModel" id="campoNombre">
+        </div>
+        <div class="mb-3">
+        <label class="custom-file-label" for="validatedCustomFile">Logo del equipo</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                (imageCropped)="imageCropped($event)"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                [resizeToWidth]="300"
+                [transform]="transform"
+                format="png">
+              </image-cropper>
+              <img class="previsualizacion" [src]="croppedImage" />
+              <div class="invalid-feedback">Formato incorrecto</div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-oxygen" (click)="publicar()" >Añadir equipo</button>
+  </form>
+</div>

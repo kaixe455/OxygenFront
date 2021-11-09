@@ -13,4 +13,8 @@ export class CategoriaService {
   getCategoriasConNoticia() : Observable<any> {
     return this.http.get(this.restUrl+'categoriasConNoticia');
   }
+
+  getCategoriasAll() : Observable<any> {
+    return this.http.get(this.restUrl+'categorias');
+  }
 }

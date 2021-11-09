@@ -1,0 +1,26 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>ADMINISTRAR NOTICIAS</h2>
+    </div>
+  </div>
+</div>
+<table class="table table-hover m-3 col-md-12">
+  <thead class="table-header-oxygen">
+    <tr>
+      <th scope="col" class="col-md-6" colspan="3">Titulo</th>
+      <th scope="col">Categorias</th>
+      <th scope="col">Fecha publicación</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let noticia of noticias$ | async">
+      <th colspan="3" class="col-md-6">{{noticia.titulo}}</th>
+      <td><span class="badge bg-primary me-3" *ngFor="let categoria of noticia.categorias">{{categoria.nombre}}</span></td>
+      <td>{{noticia.fx_publicacion_fx | date}}</td>
+      <td><button type="button" class="btn btn-danger me-3" (click)="borrarNoticia(noticia.id)"><i class="fa fa-trash"></i></button>
+          <button type="button" class="btn btn-oxygen me-3 text-white"><i class="fa fa-cogs" aria-hidden="true"></i></button></td>
+    </tr>
+  </tbody>
+</table>

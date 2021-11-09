@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/model/categoria';
 import { Noticia } from 'src/app/model/noticia';
 import { CategoriaService } from 'src/app/services/categoria.service';
+import { NoticiaService } from 'src/app/services/noticia.service';
 
 @Component({
   selector: 'app-crear-noticia',
@@ -20,11 +22,11 @@ export class CrearNoticiaComponent implements OnInit {
   dropdownSettings = {};
 
 
-  constructor(private categoriasService: CategoriaService) {
+  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService,private router: Router) {
    }
 
   ngOnInit(): void {
-    this.categorias$ = this.categoriasService.getCategoriasConNoticia();
+    this.categorias$ = this.categoriasService.getCategoriasAll();
     this.categorias$.subscribe(categorias => {
       this.categorias = categorias
       this.dropdownList = categorias
@@ -48,8 +50,10 @@ export class CrearNoticiaComponent implements OnInit {
   }
 
   publicar() {
-    console.log("creada noticia")
-    console.log(this.noticia)
+    this.noticia.autor.id = 6
+    this.noticiasService.createNoticia(this.noticia).subscribe(data => {
+      this.irGestionNoticias()
+    })
   }
 
   handleUpload(event : any) {
@@ -59,7 +63,11 @@ export class CrearNoticiaComponent implements OnInit {
     reader.onload = () => {
         this.noticia.imagen_destacada = (reader.result!.toString().split(",")[1]);
     };
-}
+  }
+
+  irGestionNoticias () {
+    this.router.navigate(['editarNoticias'])
+  }
 
 
 

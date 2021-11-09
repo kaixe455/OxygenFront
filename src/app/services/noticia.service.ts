@@ -11,15 +11,28 @@ export class NoticiaService {
 
   constructor(private http: HttpClient) { }
 
-  getNoticiasAll() : Observable<any> {
+  getNoticiasHome() : Observable<any> {
     return this.http.get(this.restUrl+'noticiasHome');
   }
 
-  getAllNoticiasSeccion() : Observable<any> {
+  getAllNoticias() : Observable<any> {
     return this.http.get(this.restUrl+'noticiasSeccion');
   }
 
   getNoticiasPorCategoria(id : number) : Observable<any> {
-    return this.http.get(this.restUrl+'noticiasporcategoria/'+id);
+    return this.http.get(this.restUrl+'noticiasporcategoria/'+id)
+  }
+
+  deleteNoticiaById(id : number) {
+    return this.http.delete(this.restUrl+'borrarNoticia/'+id).subscribe(data => {
+      console.log(data);})
+  }
+
+  createNoticia(noticia: Object): Observable<Object> {
+    return this.http.post(this.restUrl+'createNoticia', noticia);
+  }
+
+  getNoticiasAdmin() : Observable<any> {
+    return this.http.get(this.restUrl+'noticiasAdmin');
   }
 }

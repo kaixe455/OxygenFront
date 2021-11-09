@@ -18,7 +18,7 @@ export class UltimasNoticiasComponent implements OnInit {
   }
 
   obtenerUltimasNoticias() {
-    this.noticiasService.getNoticiasAll().subscribe(data => {
+    this.noticiasService.getNoticiasHome().subscribe(data => {
       this.ultimasNoticias = data;
     });
   }

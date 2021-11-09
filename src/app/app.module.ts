@@ -26,6 +26,9 @@ import { FormsModule } from '@angular/forms';
 import { NoticiacardComponent } from './noticias/noticiacard/noticiacard.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { EditarNoticiasComponent } from './admin-panel/editar-noticias/editar-noticias.component';
+import { CrearEquipoComponent } from './admin-panel/crear-equipo/crear-equipo.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     TopBarComponent,
     NavbarComponent,
     HomeComponent,
-    NoticiacardComponent
+    NoticiacardComponent,
+    EditarNoticiasComponent,
+    CrearEquipoComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BrowserAnimationsModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    ImageCropperModule
   ],
   providers: [],
   schemas:[NO_ERRORS_SCHEMA],
