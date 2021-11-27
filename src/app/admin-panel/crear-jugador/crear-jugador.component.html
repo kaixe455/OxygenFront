@@ -1,0 +1,79 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>AÑADIR JUGADOR</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form #crearJugadorForm="ngForm" class="mt-2">
+        <div class="mb-3">
+          <label for="campoNombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.nombre" name="nombre"
+          #nombre="ngModel" id="campoNombre">
+        </div>
+        <div class="mb-3">
+          <label for="campoApellido1" class="form-label">Primer Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.apellido1" name="apellido1"
+          #apellido1="ngModel" id="campoApellido1">
+        </div>
+        <div class="mb-3">
+          <label for="campoApellido2" class="form-label">Segundo Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.apellido2" name="apellido2"
+          #apellido1="ngModel" id="campoApellido2">
+        </div>
+        <div class="mb-3">
+          <label for="campoNickname" class="form-label">Nickname</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.nickname" name="nickname"
+          #nickname="ngModel" id="campoNickname">
+        </div>
+        <div class="mb-3">
+          <label for="campoJuego" class="form-label col-md-3">Juego</label>
+          <ng-select
+              [placeholder]="'Seleccione juego'"
+              name="campoJuego"
+              id="campoJuego"
+              [items]="juegos"
+              bindLabel="nombre"
+              bindValue="id"
+              appendTo="body"
+              [(ngModel)]="jugador.juego"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-3">
+          <label for="campoTwitter" class="form-label">Twitter</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.twitter" name="twitter"
+          #twitter="ngModel" id="campoTwitter">
+        </div>
+        <div class="mb-3">
+          <label for="campoTwitch" class="form-label">Twitter</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.twitch" name="twitch"
+          #twitch="ngModel" id="campoTwitch">
+        </div>
+        <div class="mb-3">
+          <label for="campoRolEquipo" class="form-label">Rol en el equipo</label>
+          <input type="text" class="form-control" [(ngModel)]="jugador.rol_equipo" name="rol_equipo"
+          #rol_equipo="ngModel" id="campoRolEquipo">
+        </div>
+        <div class="mb-3">
+              <label for="validatedCustomFile">Foto del jugador</label>
+              <br>
+              <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                (imageCropped)="imageCropped($event)"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                [resizeToWidth]="300"
+                [transform]="transform"
+                format="png">
+              </image-cropper>
+              <img class="previsualizacion" [src]="croppedImage" />
+              <div class="invalid-feedback">Formato incorrecto</div>
+        </div>
+        <br>
+        <button class="btn btn-oxygen" (click)="publicar()" >Añadir jugador</button>
+  </form>
+</div>

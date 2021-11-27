@@ -35,4 +35,14 @@ export class NoticiaService {
   getNoticiasAdmin() : Observable<any> {
     return this.http.get(this.restUrl+'noticiasAdmin');
   }
+
+  getNoticiaById(id: number): Observable<any> {
+    return this.http.get(this.restUrl+'/noticias/'+id);
+  }
+
+  updateNoticia(id: number, body: any): Observable<Object> {
+    return this.http.put(this.restUrl + '/updateNoticia/'+ id, body);
+  }
+
+
 }

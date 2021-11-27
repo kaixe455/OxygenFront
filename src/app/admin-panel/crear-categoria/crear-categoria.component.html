@@ -1,1 +1,23 @@
-<p>crear-categoria works!</p>
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>CREAR CATEGORIA</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form #crearCategoriaForm="ngForm" class="mt-2">
+        <div class="mb-3">
+          <label for="campoNombre" class="form-label">Nombre de la categoria</label>
+          <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre"
+          #nombre="ngModel" id="campoNombre">
+        </div>
+        <div class="mb-3">
+          <label for="campoDescripcion" class="form-label">Descripción de la categoria</label>
+          <input type="text" class="form-control" [(ngModel)]="categoria.descripcion" name="descripcion"
+          #nombre="ngModel" id="campoDescripcion">
+        </div>
+        <br>
+        <button class="btn btn-oxygen" (click)="publicar()" >Añadir categoria</button>
+  </form>
+</div>

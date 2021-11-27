@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Noticia } from 'src/app/model/noticia';
 import { NoticiaService } from 'src/app/services/noticia.service';
@@ -13,7 +14,7 @@ export class EditarNoticiasComponent implements OnInit {
   noticias: Noticia[] = []
   noticias$!: Observable<Noticia[]>;
 
-  constructor(private noticiasService : NoticiaService) { }
+  constructor(private noticiasService : NoticiaService, private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerNoticias()
@@ -25,8 +26,17 @@ export class EditarNoticiasComponent implements OnInit {
   }
 
   borrarNoticia(id:number) {
-    this.noticiasService.deleteNoticiaById(id);
-    this.obtenerNoticias();
+    this.noticiasService.deleteNoticiaById(id)
+    this.obtenerNoticias()
+    this.irEditarNoticias()
+  }
+
+  irEditarNoticias () {
+    this.router.navigate(['editarNoticias'])
+  }
+
+  modificarNoticia(id:number) {
+    this.router.navigate(['modificarNoticia', id]);
   }
 
 }

@@ -17,4 +17,21 @@ export class CategoriaService {
   getCategoriasAll() : Observable<any> {
     return this.http.get(this.restUrl+'categorias');
   }
+
+  createCategoria(categoria: Object): Observable<Object> {
+    return this.http.post(this.restUrl+'crearCategoria', categoria);
+  }
+
+  deleteCategoriaById(id : number) {
+    return this.http.delete(this.restUrl+'borrarCategoria/'+id).subscribe(data => {
+      console.log(data);})
+  }
+
+  getCategoriaById(id: number): Observable<any> {
+    return this.http.get(this.restUrl+'/categorias/'+id);
+  }
+
+  updateCategoria(id: number, body: any): Observable<Object> {
+    return this.http.put(this.restUrl + '/updateCategoria/'+ id, body);
+  }
 }

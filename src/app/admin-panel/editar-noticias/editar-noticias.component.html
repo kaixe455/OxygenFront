@@ -20,7 +20,7 @@
       <td><span class="badge bg-primary me-3" *ngFor="let categoria of noticia.categorias">{{categoria.nombre}}</span></td>
       <td>{{noticia.fx_publicacion_fx | date}}</td>
       <td><button type="button" class="btn btn-danger me-3" (click)="borrarNoticia(noticia.id)"><i class="fa fa-trash"></i></button>
-          <button type="button" class="btn btn-oxygen me-3 text-white"><i class="fa fa-cogs" aria-hidden="true"></i></button></td>
+          <button type="button" class="btn btn-oxygen me-3 text-white" (click)="modificarNoticia(noticia.id)"><i class="fa fa-cogs" aria-hidden="true"></i></button></td>
     </tr>
   </tbody>
 </table>

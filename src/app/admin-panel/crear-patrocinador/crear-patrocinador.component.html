@@ -1,0 +1,45 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>AÑADIR PATROCINADOR</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form #crearPatrocinadorForm="ngForm" class="mt-2">
+        <div class="mb-3">
+          <label for="camboNombre" class="form-label">Nombre del Patrocinador</label>
+          <input type="text" class="form-control" [(ngModel)]="patrocinador.nombre" name="nombre"
+          #nombre="ngModel" id="campoNombre">
+        </div>
+        <div class="mb-3">
+          <label for="campoDescripcion" class="form-label">Descripcion</label>
+          <textarea id="campoDescripcion" class="form-control" rows="10" [(ngModel)]="patrocinador.descripcion" name="descripcion"
+          #descripcion="ngModel"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="campoWeb" class="form-label">Pagina web del patrocinador</label>
+          <input type="text" class="form-control" [(ngModel)]="patrocinador.urlEmpresa" name="urlEmpresa"
+          #nombre="ngModel" id="campoWeb">
+        </div>
+        <div class="mb-3">
+              <label for="validatedCustomFile">Logo del patrocinador</label>
+              <br>
+              <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                (imageCropped)="imageCropped($event)"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                [resizeToWidth]="200"
+                [transform]="transform"
+                format="png">
+              </image-cropper>
+              <img class="previsualizacion" [src]="croppedImage" />
+              <div class="invalid-feedback">Formato incorrecto</div>
+        </div>
+        <br>
+        <button class="btn btn-oxygen" (click)="publicar()" >Añadir patrocinador</button>
+  </form>
+</div>

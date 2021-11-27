@@ -1,0 +1,32 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>ADMINISTRAR JUGADORES</h2>
+    </div>
+  </div>
+</div>
+<table class="table table-hover m-3 col-md-12">
+  <thead class="table-header-oxygen">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Primer Apellido</th>
+      <th scope="col">Segundo Apellido</th>
+      <th scope="col">Nickname</th>
+      <th scope="col">Juego</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let jugador of jugadores$ | async">
+      <th>{{jugador.nombre}}</th>
+      <th>{{jugador.apellido1}}</th>
+      <th>{{jugador.apellido2}}</th>
+      <th>{{jugador.nickname}}</th>
+      <th>{{jugador.juego.nombre}}</th>
+      <td>
+        <button type="button" class="btn btn-danger me-3" (click)="borrarJugador(jugador.id)"><i class="fa fa-trash"></i></button>
+        <button type="button" class="btn btn-oxygen me-3 text-white" (click)="modificarJugador(jugador.id)"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

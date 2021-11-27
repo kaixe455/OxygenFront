@@ -1,0 +1,7 @@
+.display-table {
+  display:table;
+}
+.centrar-table {
+  display:table-cell;
+  vertical-align:middle;
+}

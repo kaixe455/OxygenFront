@@ -1,0 +1,34 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>ADMINISTRAR NOTICIAS</h2>
+    </div>
+  </div>
+</div>
+<table class="table table-hover m-3 col-md-12">
+  <thead class="table-header-oxygen">
+    <tr>
+      <th scope="col">Juego</th>
+      <th scope="col">Equipo Local</th>
+      <th scope="col">Equipo Visitante</th>
+      <th scope="col">Fecha de inicio</th>
+      <th scope="col">Competición</th>
+      <th scope="col">Puntuación</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let partido of partidos$ | async">
+      <th>{{partido.juego.nombre}}</th>
+      <td>{{partido.equipoLocal.nombre}}</td>
+      <td>{{partido.equipoVisitante.nombre}}</td>
+      <td>{{partido.fx_inicio_fx | date}}</td>
+      <td>{{partido.competicion}}</td>
+      <td><span *ngIf="partido.puntuacionLocal">{{partido.puntuacionLocal}} - {{partido.puntuacionVisitante}}</span><span *ngIf="!partido.puntuacionLocal && !partido.puntuacionVisitante">Partido no finalizado</span></td>
+      <td><button type="button" class="btn btn-danger me-3" (click)="borrarPartido(partido.id)"><i class="fa fa-trash"></i></button>
+          <button type="button" class="btn btn-oxygen me-3 text-white"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-oxygen me-3 text-white" (click)="introducirResultado(partido.id)"><i class="fa fa-trophy" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-danger me-3 text-white" (click)="eliminarResultado(partido.id)"><i class="fa fa-trophy" aria-hidden="true"></i></button></td>
+    </tr>
+  </tbody>
+</table>

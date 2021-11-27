@@ -1,0 +1,28 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>ADMINISTRAR PATROCINADORES</h2>
+    </div>
+  </div>
+</div>
+<table class="table table-hover m-3 col-md-12">
+  <thead class="table-header-oxygen">
+    <tr>
+      <th scope="col">Patrocinador</th>
+      <th scope="col">Url Empresa</th>
+      <th scope="col">Logo</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patrocinador of patrocinadores$ | async">
+      <th>{{patrocinador.nombre}}</th>
+      <td>{{patrocinador.urlEmpresa}}</td>
+      <td><img class="patrocinador-logo-preview" src="data:image/png;base64,{{patrocinador.logo}}" alt="{{patrocinador.nombre}}" /></td>
+      <td>
+          <button type="button" class="btn btn-danger me-3" (click)="borrarPatrocinador(patrocinador.id)"><i class="fa fa-trash"></i></button>
+          <button type="button" class="btn btn-oxygen me-3 text-white" (click) = "modificarPatrocinador(patrocinador.id)"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

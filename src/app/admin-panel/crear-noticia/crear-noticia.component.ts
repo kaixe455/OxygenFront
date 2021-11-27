@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ImageTransform } from 'ngx-image-cropper';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/model/categoria';
 import { Noticia } from 'src/app/model/noticia';
@@ -50,6 +51,9 @@ export class CrearNoticiaComponent implements OnInit {
   }
 
   publicar() {
+    if(this.croppedImage) {
+      this.noticia.imagen_destacada = this.croppedImage.split(",")[1]
+    }
     this.noticia.autor.id = 6
     this.noticiasService.createNoticia(this.noticia).subscribe(data => {
       this.irGestionNoticias()
@@ -68,6 +72,34 @@ export class CrearNoticiaComponent implements OnInit {
   irGestionNoticias () {
     this.router.navigate(['editarNoticias'])
   }
+
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
+    scale = 1;
+    transform: ImageTransform = {};
+
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+    imageCropped(event: any) {
+        this.croppedImage = event.base64;
+    }
+
+    zoomOut() {
+      this.scale -= .1;
+      this.transform = {
+          ...this.transform,
+          scale: this.scale
+      };
+    }
+
+    zoomIn() {
+      this.scale += .1;
+      this.transform = {
+          ...this.transform,
+          scale: this.scale
+      };
+    }
 
 
 

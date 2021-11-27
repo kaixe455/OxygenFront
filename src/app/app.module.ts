@@ -15,7 +15,6 @@ import { ProximoPartidoComponent } from './home/proximo-partido/proximo-partido.
 import { UltimosResultadosComponent } from './home/ultimos-resultados/ultimos-resultados.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { CrearNoticiaComponent } from './admin-panel/crear-noticia/crear-noticia.component';
-import { IntroducirResultadoComponent } from './admin-panel/introducir-resultado/introducir-resultado.component';
 import { CrearUsuarioComponent } from './admin-panel/crear-usuario/crear-usuario.component';
 import { TopBarComponent } from './shared/header/top-bar/top-bar.component';
 import { NavbarComponent } from './shared/header/navbar/navbar.component';
@@ -29,6 +28,25 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { EditarNoticiasComponent } from './admin-panel/editar-noticias/editar-noticias.component';
 import { CrearEquipoComponent } from './admin-panel/crear-equipo/crear-equipo.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { CrearJuegoComponent } from './admin-panel/crear-juego/crear-juego.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AdministrarPartidosComponent } from './admin-panel/administrar-partidos/administrar-partidos.component';
+import { InformarResultadoComponent } from './admin-panel/administrar-partidos/informar-resultado/informar-resultado.component';
+import { ModificarNoticiaComponent } from './admin-panel/editar-noticias/modificar-noticia/modificar-noticia.component';
+import { AdministrarCategoriasComponent } from './admin-panel/administrar-categorias/administrar-categorias.component';
+import { ModificarCategoriasComponent } from './admin-panel/administrar-categorias/modificar-categorias/modificar-categorias.component';
+import { EliminarResultadoComponent } from './admin-panel/administrar-partidos/eliminar-resultado/eliminar-resultado.component';
+import { AdministrarSlidersComponent } from './admin-panel/administrar-sliders/administrar-sliders.component';
+import { ModificarSliderComponent } from './admin-panel/administrar-sliders/modificar-slider/modificar-slider.component';
+import { AdministrarEquiposComponent } from './admin-panel/administrar-equipos/administrar-equipos.component';
+import { ModificarEquipoComponent } from './admin-panel/administrar-equipos/modificar-equipo/modificar-equipo.component';
+import { CrearJugadorComponent } from './admin-panel/crear-jugador/crear-jugador.component';
+import { CrearPatrocinadorComponent } from './admin-panel/crear-patrocinador/crear-patrocinador.component';
+import { AdministrarPatrocinadoresComponent } from './admin-panel/administrar-patrocinadores/administrar-patrocinadores.component';
+import { ModificarPatrocinadorComponent } from './admin-panel/administrar-patrocinadores/modificar-patrocinador/modificar-patrocinador.component';
+import { AdministrarJugadoresComponent } from './admin-panel/administrar-jugadores/administrar-jugadores.component';
+import { ModificarJugadorComponent } from './admin-panel/administrar-jugadores/modificar-jugador/modificar-jugador.component';
 
 @NgModule({
   declarations: [
@@ -45,14 +63,30 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     UltimosResultadosComponent,
     NoticiasComponent,
     CrearNoticiaComponent,
-    IntroducirResultadoComponent,
     CrearUsuarioComponent,
     TopBarComponent,
     NavbarComponent,
     HomeComponent,
     NoticiacardComponent,
     EditarNoticiasComponent,
-    CrearEquipoComponent
+    CrearEquipoComponent,
+    CrearJuegoComponent,
+    AdministrarPartidosComponent,
+    InformarResultadoComponent,
+    ModificarNoticiaComponent,
+    AdministrarCategoriasComponent,
+    ModificarCategoriasComponent,
+    EliminarResultadoComponent,
+    AdministrarSlidersComponent,
+    ModificarSliderComponent,
+    AdministrarEquiposComponent,
+    ModificarEquipoComponent,
+    CrearJugadorComponent,
+    CrearPatrocinadorComponent,
+    AdministrarPatrocinadoresComponent,
+    ModificarPatrocinadorComponent,
+    AdministrarJugadoresComponent,
+    ModificarJugadorComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +96,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     BrowserAnimationsModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    ImageCropperModule
+    ImageCropperModule,
+    NgbModule,
+    NgSelectModule,
   ],
   providers: [],
   schemas:[NO_ERRORS_SCHEMA],

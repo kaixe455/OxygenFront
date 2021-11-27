@@ -1,0 +1,51 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>INTRODUCIR RESULTADO DEL PARTIDO</h2>
+    </div>
+  </div>
+</div>
+<section *ngIf="partido$ | async">
+  <div class="container mt-3" >
+    <div class="row">
+      <div class="col-md-2">
+        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoLocal.logo}}" alt="">
+      </div>
+      <div class="col-md-2 display-table">
+        <span class="centrar-table">{{partido.equipoLocal.nombre}}</span>
+      </div>
+      <div class="col-md-4 text-center texto-20 display-table">
+        <span class="centrar-table">{{partido.puntuacionLocal}} VS {{partido.puntuacionVisitante}}</span>
+      </div>
+      <div class="col-md-2 display-table">
+        <span class="centrar-table">{{partido.equipoVisitante.nombre}}</span>
+      </div>
+      <div class="col-md-2">
+        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoVisitante.logo}}" alt="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-2">
+          <label for="campoPuntuacionLocal" class="form-label">Resultado Local</label>
+          <input type="text" class="form-control" [(ngModel)]="partido.puntuacionLocal" name="campoPuntuacionLocal"
+          #nombre="ngModel" id="campoPuntuacionLocal">
+      </div>
+      <div class="col-md-4 text-center texto-20 display-table">
+      </div>
+      <div class="col-md-2">
+          <label for="campoPuntuacionVisitante" class="form-label">Resultado Vitante</label>
+          <input type="text" class="form-control" [(ngModel)]="partido.puntuacionVisitante" name="campoPuntuacionVisitante"
+          #nombre="ngModel" id="campoPuntuacionVisitante">
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row mt-6">
+      <div class="col-md-12">
+        <button class="btn btn-oxygen" (click)="actualizar()">Publicar</button>
+      </div>
+    </div>
+  </div>
+</section>

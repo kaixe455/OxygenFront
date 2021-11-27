@@ -1,1 +1,70 @@
-<p>crear-partido works!</p>
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>CREAR PARTIDO</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form #crearNoticiasForm="ngForm" class="mt-2">
+        <div class="mb-3">
+          <label for="campoJuego" class="form-label col-md-3">Juego</label>
+          <ng-select
+              [placeholder]="'Seleccione juego'"
+              name="campoJuego"
+              id="campoJuego"
+              [items]="juegos"
+              bindLabel="nombre"
+              bindValue="id"
+              appendTo="body"
+              [(ngModel)]="partido.juego"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-3">
+          <label for="campoCompeticion" class="form-label col-md-3">Competicion</label>
+          <input type="text" class="form-control" [(ngModel)]="partido.competicion" name="competicion"
+          #competicion="ngModel" id="campoCompeticion">
+        </div>
+        <div class="mb-3">
+          <label for="campoSubtitulo" class="form-label col-md-3">Equipo Local</label>
+          <ng-select
+              [placeholder]="'Seleccione equipo'"
+              name="equipoLocal"
+              id= "equipoLocal"
+              [items]="equipos"
+              bindLabel="nombre"
+              bindValue="id"
+              appendTo="body"
+              [(ngModel)]="partido.equipoLocal"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-3">
+          <label for="campoSubtitulo" class="form-label col-md-3">Equipo Visitante</label>
+          <ng-select
+              [placeholder]="'Seleccione equipo'"
+              name="equipoVisitante"
+              id="equipoVisitante"
+              [items]="equipos"
+              bindLabel="nombre"
+              bindValue="id"
+              appendTo="body"
+              [(ngModel)]="partido.equipoVisitante"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-3">
+          <label for="campoFechaInicio" class="form-label col-md-3">Fecha de inicio</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+            name="dp" [(ngModel)]="fechaDatePicker" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"  type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-oxygen" (click)="crearPartido();">Publicar Partido</button>
+  </form>
+</div>
