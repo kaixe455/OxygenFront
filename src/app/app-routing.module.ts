@@ -22,6 +22,7 @@ import { CrearPatrocinadorComponent } from './admin-panel/crear-patrocinador/cre
 import { EditarNoticiasComponent } from './admin-panel/editar-noticias/editar-noticias.component';
 import { ModificarNoticiaComponent } from './admin-panel/editar-noticias/modificar-noticia/modificar-noticia.component';
 import { HomeComponent } from './home/home.component';
+import { LoginUsuariosComponent } from './login-usuarios/login-usuarios.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 
 const routes: Routes = [
@@ -48,7 +49,9 @@ const routes: Routes = [
   { path: 'administrarPatrocinadores', component: AdministrarPatrocinadoresComponent },
   { path: 'crearJugador', component: CrearJugadorComponent },
   { path: 'modificarJugador/:id', component: ModificarJugadorComponent },
-  { path: 'administrarJugadores', component: AdministrarJugadoresComponent }
+  { path: 'administrarJugadores', component: AdministrarJugadoresComponent },
+  { path: 'login', component: LoginUsuariosComponent }
+
 ];
 
 @NgModule({

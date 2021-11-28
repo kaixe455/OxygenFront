@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let patrocinador of patrocinadores$ | async">
+    <tr *ngFor="let patrocinador of patrocinadores">
       <th>{{patrocinador.nombre}}</th>
       <td>{{patrocinador.urlEmpresa}}</td>
       <td><img class="patrocinador-logo-preview" src="data:image/png;base64,{{patrocinador.logo}}" alt="{{patrocinador.nombre}}" /></td>

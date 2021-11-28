@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Usuario } from 'src/app/model/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  logged : boolean
+  usuario$ !: Observable<Usuario>
+  usuario !: Usuario
+
+  constructor(private usuarioService : UsuarioService) {
+    this.logged = false
+    this.usuarioService.isLoggedUser().subscribe(foo => {
+      this.logged = foo
+      this.usuario$ = usuarioService.getUsuarioLogueado()
+      this.usuario$.subscribe(usuario => {
+        this.usuario = usuario
+      })
+    });
+   }
 
   ngOnInit(): void {
+
+  }
+
+  logOut() {
+    this.usuarioService.logOutUser()
   }
 
 }
