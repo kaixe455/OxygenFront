@@ -2,25 +2,28 @@
   <div class="d-flex flex-wrap">
     <div class="col-md-10">
       <div class="row">
-        <div class="col-md-2" *ngIf="logged && usuario">
-          <img src="../../../../assets/images/image0.jpg" (click)="logOut()" alt="" class="img-perfil">
+        <div class="col-md-3" *ngIf="logged && usuario">
+          <img src="../../../../assets/images/image0.jpg" alt="" class="img-perfil">
           <span class="text-white nombreUsuario">{{usuario.nombre}}</span>
+          <button class="btn btn-oxygen mx-2 text-white" (click)="logOut()"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+          <button class="btn btn-oxygen mx-2 text-white" (click)="irModificarPerfil()"><i class="fa fa-cogs" aria-hidden="true"></i></button>
         </div>
-        <div class="col-md-10 text-white">
+        <div class="col-md-9 text-white">
           <ul class="nav" *ngIf="logged">
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="crearNoticias" routerLinkActive="active">Crear Noticia</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="editarNoticias" routerLinkActive="active">Administrar Noticias</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="crearPartido">Crear Partido</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarPartidos">Administrar partidos</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1">Añadir jugador</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="crearEquipo" >Añadir equipo</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="crearJuego" >Añadir juego</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="crearCategoria" >Añadir Categoria</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarCategorias" routerLinkActive="active">Categorias</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="editarNoticias" routerLinkActive="active">Noticias</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarPatrocinadores">Patrocinadores</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarPartidos">Partidos</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarJugadores">Jugadores</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarEquipos" >Equipos</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarSliders" >Sliders</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarJuegos" >Juegos</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarUsuarios" >Usuario</button></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 no-padding-right">
       <ul class="nav socialBar pull-right">
         <li class="nav-item"><a href="#" class="nav-link socialIcon px-2 fa fa-twitter fa-2x"></a></li>
         <li class="nav-item"><a href="#" class="nav-link socialIcon px-2 fa fa-instagram fa-2x"></a></li>

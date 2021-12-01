@@ -39,6 +39,10 @@ export class PartidoService {
     return this.http.get(this.restUrl+'reiniciarPartido/'+ id);
   }
 
+  getProximoPartido() : Observable<any> {
+    return this.http.get(this.restUrl+'proximoPartido');
+  }
+
 
 
 }

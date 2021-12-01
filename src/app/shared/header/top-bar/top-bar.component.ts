@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -14,7 +15,7 @@ export class TopBarComponent implements OnInit {
   usuario$ !: Observable<Usuario>
   usuario !: Usuario
 
-  constructor(private usuarioService : UsuarioService) {
+  constructor(private usuarioService : UsuarioService, private router : Router) {
     this.logged = false
     this.usuarioService.isLoggedUser().subscribe(foo => {
       this.logged = foo
@@ -31,6 +32,10 @@ export class TopBarComponent implements OnInit {
 
   logOut() {
     this.usuarioService.logOutUser()
+  }
+
+  irModificarPerfil() {
+    this.router.navigate(['modificarPerfil'])
   }
 
 }

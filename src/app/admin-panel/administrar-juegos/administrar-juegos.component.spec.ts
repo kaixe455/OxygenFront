@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EliminarResultadoComponent } from './eliminar-resultado.component';
+import { AdministrarJuegosComponent } from './administrar-juegos.component';
 
-describe('EliminarResultadoComponent', () => {
-  let component: EliminarResultadoComponent;
-  let fixture: ComponentFixture<EliminarResultadoComponent>;
+describe('AdministrarJuegosComponent', () => {
+  let component: AdministrarJuegosComponent;
+  let fixture: ComponentFixture<AdministrarJuegosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EliminarResultadoComponent ]
+      declarations: [ AdministrarJuegosComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EliminarResultadoComponent);
+    fixture = TestBed.createComponent(AdministrarJuegosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

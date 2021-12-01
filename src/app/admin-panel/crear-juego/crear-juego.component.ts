@@ -34,7 +34,7 @@ export class CrearJuegoComponent implements OnInit {
       this.juego.logo = this.croppedImage.split(",")[1]
       console.log(this.juego)
       this.juegoService.createJuego(this.juego).subscribe(data => {
-        this.irCrearJuego()
+        this.irAdministrarJuego()
         this.juego = new Juego()
         this.imageChangedEvent = '';
         this.croppedImage = '';
@@ -62,6 +62,10 @@ export class CrearJuegoComponent implements OnInit {
 
     irCrearJuego () {
       this.router.navigate(['crearJuego'])
+    }
+
+    irAdministrarJuego () {
+      this.router.navigate(['administrarJuegos'])
     }
 
 }

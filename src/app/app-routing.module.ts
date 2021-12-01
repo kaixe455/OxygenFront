@@ -4,6 +4,8 @@ import { AdministrarCategoriasComponent } from './admin-panel/administrar-catego
 import { ModificarCategoriasComponent } from './admin-panel/administrar-categorias/modificar-categorias/modificar-categorias.component';
 import { AdministrarEquiposComponent } from './admin-panel/administrar-equipos/administrar-equipos.component';
 import { ModificarEquipoComponent } from './admin-panel/administrar-equipos/modificar-equipo/modificar-equipo.component';
+import { AdministrarJuegosComponent } from './admin-panel/administrar-juegos/administrar-juegos.component';
+import { ModificarJuegoComponent } from './admin-panel/administrar-juegos/modificar-juego/modificar-juego.component';
 import { AdministrarJugadoresComponent } from './admin-panel/administrar-jugadores/administrar-jugadores.component';
 import { ModificarJugadorComponent } from './admin-panel/administrar-jugadores/modificar-jugador/modificar-jugador.component';
 import { AdministrarPartidosComponent } from './admin-panel/administrar-partidos/administrar-partidos.component';
@@ -50,7 +52,9 @@ const routes: Routes = [
   { path: 'crearJugador', component: CrearJugadorComponent },
   { path: 'modificarJugador/:id', component: ModificarJugadorComponent },
   { path: 'administrarJugadores', component: AdministrarJugadoresComponent },
-  { path: 'login', component: LoginUsuariosComponent }
+  { path: 'login', component: LoginUsuariosComponent },
+  { path: 'modificarJuego/:id', component: ModificarJuegoComponent },
+  { path: 'administrarJuegos', component: AdministrarJuegosComponent }
 
 ];
 

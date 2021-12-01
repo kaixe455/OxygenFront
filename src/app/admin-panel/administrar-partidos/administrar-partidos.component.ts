@@ -45,4 +45,8 @@ export class AdministrarPartidosComponent implements OnInit {
 
   }
 
+  irCrearPartido() {
+      this.router.navigate(['crearPartido'])
+  }
+
 }

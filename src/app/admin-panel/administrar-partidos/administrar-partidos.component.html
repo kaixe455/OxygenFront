@@ -5,6 +5,11 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12 p-3">
+    <button class="btn btn-oxygen mx-3 mt-1" (click)="irCrearPartido()">Crear partido</button>
+  </div>
+</div>
 <table class="table table-hover m-3 col-md-12">
   <thead class="table-header-oxygen">
     <tr>
@@ -19,14 +24,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let partido of partidos$ | async">
-      <th>{{partido.juego.nombre}}</th>
-      <td>{{partido.equipoLocal.nombre}}</td>
-      <td>{{partido.equipoVisitante.nombre}}</td>
-      <td>{{partido.fx_inicio_fx | date}}</td>
-      <td>{{partido.competicion}}</td>
-      <td><span *ngIf="partido.puntuacionLocal">{{partido.puntuacionLocal}} - {{partido.puntuacionVisitante}}</span><span *ngIf="!partido.puntuacionLocal && !partido.puntuacionVisitante">Partido no finalizado</span></td>
-      <td><button type="button" class="btn btn-danger me-3" (click)="borrarPartido(partido.id)"><i class="fa fa-trash"></i></button>
-          <button type="button" class="btn btn-oxygen me-3 text-white"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+      <th class="align-middle">{{partido.juego.nombre}}</th>
+      <td class="align-middle">{{partido.equipoLocal.nombre}}</td>
+      <td class="align-middle">{{partido.equipoVisitante.nombre}}</td>
+      <td class="align-middle">{{partido.fx_inicio_fx | date}}</td>
+      <td class="align-middle">{{partido.competicion}}</td>
+      <td class="align-middle"><span *ngIf="partido.puntuacionLocal">{{partido.puntuacionLocal}} - {{partido.puntuacionVisitante}}</span><span *ngIf="!partido.puntuacionLocal && !partido.puntuacionVisitante">Partido no finalizado</span></td>
+      <td class="align-middle"><button type="button" class="btn btn-danger me-3" (click)="borrarPartido(partido.id)"><i class="fa fa-trash"></i></button>
           <button type="button" class="btn btn-oxygen me-3 text-white" (click)="introducirResultado(partido.id)"><i class="fa fa-trophy" aria-hidden="true"></i></button>
           <button type="button" class="btn btn-danger me-3 text-white" (click)="eliminarResultado(partido.id)"><i class="fa fa-trophy" aria-hidden="true"></i></button></td>
     </tr>

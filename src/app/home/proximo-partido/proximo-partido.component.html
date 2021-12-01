@@ -1,1 +1,21 @@
-<p>proximo-partido works!</p>
+<section *ngIf="partido$ | async">
+  <div class="container mt-3" >
+    <div class="row">
+      <div class="col-md-2">
+        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoLocal.logo}}" alt="">
+      </div>
+      <div class="col-md-2 display-table">
+        <span class="centrar-table">{{partido.equipoLocal.nombre}}</span>
+      </div>
+      <div class="col-md-4 text-center texto-20 display-table">
+        <span class="centrar-table">{{partido.puntuacionLocal}} VS {{partido.puntuacionVisitante}}</span>
+      </div>
+      <div class="col-md-2 display-table">
+        <span class="centrar-table">{{partido.equipoVisitante.nombre}}</span>
+      </div>
+      <div class="col-md-2">
+        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoVisitante.logo}}" alt="">
+      </div>
+    </div>
+  </div>
+</section>

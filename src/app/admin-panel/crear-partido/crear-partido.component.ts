@@ -41,14 +41,18 @@ export class CrearPartidoComponent implements OnInit {
   crearPartido() {
     console.log(this.partido)
     this.partidoService.createPartido(this.partido).subscribe(data => {
-      this.irCrearPartido()
       this.partido = new Partido()
+      this.irAdministrarPartidos()
 
     })
   }
 
   irCrearPartido () {
     this.router.navigate(['crearPartido'])
+  }
+
+  irAdministrarPartidos () {
+    this.router.navigate(['administrarPartidos'])
   }
 
 }
