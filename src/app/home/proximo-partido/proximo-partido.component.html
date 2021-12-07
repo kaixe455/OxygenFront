@@ -1,20 +1,25 @@
 <section *ngIf="partido$ | async">
   <div class="container mt-3" >
     <div class="row">
-      <div class="col-md-2">
-        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoLocal.logo}}" alt="">
+      <div class="col-md-12 text-center">
+        <span>{{partido.fx_inicio_fx | date:'dd/MM/yyyy HH:mm:ss'}}</span>
       </div>
-      <div class="col-md-2 display-table">
-        <span class="centrar-table">{{partido.equipoLocal.nombre}}</span>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-2">
+        <img class="logo-equipo-proximo" src="data:image/png;base64,{{partido.equipoLocal.logo}}" alt="">
+      </div>
+      <div class="col-md-2 display-table align-middle">
+        <span class="equipos-texto">{{partido.equipoLocal.nombre}}</span>
       </div>
       <div class="col-md-4 text-center texto-20 display-table">
-        <span class="centrar-table">{{partido.puntuacionLocal}} VS {{partido.puntuacionVisitante}}</span>
+        <span class="centrar-table align-middle">{{partido.puntuacionLocal}} <span class="versus-texto">VS</span> {{partido.puntuacionVisitante}}</span>
       </div>
       <div class="col-md-2 display-table">
-        <span class="centrar-table">{{partido.equipoVisitante.nombre}}</span>
+        <span class="equipos-texto">{{partido.equipoVisitante.nombre}}</span>
       </div>
       <div class="col-md-2">
-        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoVisitante.logo}}" alt="">
+        <img class="logo-equipo-proximo" src="data:image/png;base64,{{partido.equipoVisitante.logo}}" alt="">
       </div>
     </div>
   </div>

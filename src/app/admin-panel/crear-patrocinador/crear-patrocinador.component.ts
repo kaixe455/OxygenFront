@@ -35,12 +35,12 @@ export class CrearPatrocinadorComponent implements OnInit {
       this.patrocinador.logo = this.croppedImage.split(",")[1]
       console.log(this.patrocinador)
       this.patrocinadorService.createPatrocinador(this.patrocinador).subscribe(data => {
-        this.irCrearPatrocinador()
         this.patrocinador = new Patrocinador()
         this.imageChangedEvent = '';
         this.croppedImage = '';
         this.scale = 1;
         this.transform = {};
+        this.irCrearPatrocinador()
       })
 
     }

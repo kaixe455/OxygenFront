@@ -22,7 +22,7 @@
         </div>
         <div class="row mt-3">
           <div class="col-md-6">
-            <a href="#" class="btn btn-primary">Leer</a>
+            <a (click)="visualizarNoticia(noticia.id)" class="btn btn-primary">Leer</a>
           </div>
           <div class="col-md-6 mt-3">
             <span class="fechaPublicacion pull-right margin-l-3"> {{noticia.fx_publicacion_fx | date}}</span>

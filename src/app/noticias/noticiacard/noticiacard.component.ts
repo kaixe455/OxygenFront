@@ -5,6 +5,7 @@ import { NoticiaSeccion } from 'src/app/model/noticia-seccion';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { transition, style, animate, trigger } from '@angular/animations';
+import { Router } from '@angular/router';
 
 const enterTransition = transition(':enter', [
   style({
@@ -49,7 +50,7 @@ export class NoticiacardComponent implements OnInit {
   noticias$!: Observable<NoticiaSeccion[]>;
 
 
-  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService) { }
+  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService, private router : Router) { }
 
   ngOnInit(): void {
     this.categorias$ = this.categoriasService.getCategoriasConNoticia();
@@ -65,6 +66,10 @@ export class NoticiacardComponent implements OnInit {
   obtenerTodas() {
     this.noticias$ = this.noticiasService.getAllNoticias();
     this.noticias$.subscribe(noticias => this.noticias = noticias);
+  }
+
+  visualizarNoticia(id : number) {
+      this.router.navigate(['noticia', id])
   }
 
 }

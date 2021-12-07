@@ -39,4 +39,8 @@ export class AdministrarPatrocinadoresComponent implements OnInit {
     this.router.navigate(['modificarPatrocinador', id])
   }
 
+  irCrearPatrocinador () {
+    this.router.navigate(['crearPatrocinador'])
+  }
+
 }

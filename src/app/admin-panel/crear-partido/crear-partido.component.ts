@@ -8,6 +8,7 @@ import {NgbDateStruct,NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { Equipo } from 'src/app/model/equipo';
 import { PartidoService } from 'src/app/services/partido.service';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-crear-partido',
@@ -40,6 +41,7 @@ export class CrearPartidoComponent implements OnInit {
 
   crearPartido() {
     console.log(this.partido)
+    this.partido.fx_inicio_fx = new Date(this.fechaDatePicker.year, this.fechaDatePicker.month - 1, this.fechaDatePicker.day);
     this.partidoService.createPartido(this.partido).subscribe(data => {
       this.partido = new Partido()
       this.irAdministrarPartidos()

@@ -43,6 +43,10 @@ export class PartidoService {
     return this.http.get(this.restUrl+'proximoPartido');
   }
 
+  getUltimosResultados() : Observable<any> {
+    return this.http.get(this.restUrl+'ultimosResultados');
+  }
+
 
 
 }

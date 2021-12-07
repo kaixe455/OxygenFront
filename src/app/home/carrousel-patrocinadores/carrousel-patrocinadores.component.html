@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="row patro-carousel">
+      <div class="col-md-2 mx-3" *ngFor="let patrocinador of patrocinadores$ | async" >
+        <img class="patrocinador-logo-preview" src="data:image/png;base64,{{patrocinador.logo}}" alt="{{patrocinador.nombre}}" />
+      </div>
+  </div>
+</div>

@@ -1,1 +1,24 @@
-<p>ultimos-resultados works!</p>
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="row p-3 mt-4" [ngClass]="{'fondoVictoria': partido.puntuacionLocal > partido.puntuacionVisitante, 'fondoDerrota':  partido.puntuacionLocal < partido.puntuacionVisitante, 'fondoEmpate' : partido.puntuacionLocal == partido.puntuacionVisitante}" *ngFor="let partido of partidos$ | async">
+      <div class="col-md-2">
+        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoLocal.logo}}" alt="">
+      </div>
+      <div class="col-md-2 display-table texto-20 align-middle">
+        <span class="centrar-table nombre-equipo">{{partido.equipoLocal.nombre}}</span>
+      </div>
+      <div class="col-md-2 text-center resultado-texto display-table">
+        <span class="centrar-table">{{partido.puntuacionLocal}} - {{partido.puntuacionVisitante}}</span>
+      </div>
+      <div class="col-md-2 display-table texto-20">
+        <span class="centrar-table nombre-equipo">{{partido.equipoVisitante.nombre}}</span>
+      </div>
+      <div class="col-md-2">
+        <img class="logo-equipo" src="data:image/png;base64,{{partido.equipoVisitante.logo}}" alt="">
+      </div>
+      <div class="col-md-2">
+        <img class="logo-juego" src="data:image/png;base64,{{partido.juego.logo}}" alt="">
+      </div>
+    </div>
+  </div>
+</div>

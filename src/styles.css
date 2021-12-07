@@ -76,4 +76,26 @@ body {
   max-width: 50px;
 }
 
+.logo-juego {
+  max-width: 100px;
+}
+
+.logo-equipo-proximo {
+  max-width: 100px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.separator-oxygen {
+  background-color: #00b4f2;
+  width: 400px;
+  height: 10px;
+}
+
 

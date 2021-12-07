@@ -1,0 +1,8 @@
+.imagen-noticia {
+  max-width: 100%;
+}
+
+.contenido .subtitulo {
+  text-align: justify;
+  text-justify: inter-word;
+}

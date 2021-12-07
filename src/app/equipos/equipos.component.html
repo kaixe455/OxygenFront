@@ -1,0 +1,19 @@
+<div class="container-fluid bg-animated py-5">
+  <div class="row">
+    <div class="col-md-12 text-white text-center">
+      <h2>NUESTROS EQUIPOS</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row juegos-carousel mt-3">
+      <div class="col-md-2 mx-3" *ngFor="let juego of juegos$ | async" >
+        <img class="juego-logo-preview" src="data:image/png;base64,{{juego.logo}}" alt="{{juego.nombre}}" />
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr class="d-inline-block mx-3 separator-oxygen mb-0" />
+    </div>
+  </div>
+</div>

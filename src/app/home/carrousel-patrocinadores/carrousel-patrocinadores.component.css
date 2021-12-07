@@ -1,0 +1,9 @@
+.patrocinador-logo-preview {
+  max-height: 150px;
+}
+.patro-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

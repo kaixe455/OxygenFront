@@ -48,6 +48,10 @@ import { AdministrarJugadoresComponent } from './admin-panel/administrar-jugador
 import { ModificarJugadorComponent } from './admin-panel/administrar-jugadores/modificar-jugador/modificar-jugador.component';
 import { AdministrarJuegosComponent } from './admin-panel/administrar-juegos/administrar-juegos.component';
 import { ModificarJuegoComponent } from './admin-panel/administrar-juegos/modificar-juego/modificar-juego.component';
+import { VisualizarNoticiaComponent } from './noticias/visualizar-noticia/visualizar-noticia.component';
+import { CarrouselPatrocinadoresComponent } from './home/carrousel-patrocinadores/carrousel-patrocinadores.component';
+import { ClubComponent } from './club/club.component';
+import { EquiposComponent } from './equipos/equipos.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +92,11 @@ import { ModificarJuegoComponent } from './admin-panel/administrar-juegos/modifi
     AdministrarJugadoresComponent,
     ModificarJugadorComponent,
     AdministrarJuegosComponent,
-    ModificarJuegoComponent
+    ModificarJuegoComponent,
+    VisualizarNoticiaComponent,
+    CarrouselPatrocinadoresComponent,
+    ClubComponent,
+    EquiposComponent
   ],
   imports: [
     BrowserModule,

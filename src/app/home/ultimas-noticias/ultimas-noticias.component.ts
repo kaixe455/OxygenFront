@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NoticiaService } from 'src/app/services/noticia.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class UltimasNoticiasComponent implements OnInit {
 
   ultimasNoticias : any
 
-  constructor(private noticiasService : NoticiaService) { }
+  constructor(private noticiasService : NoticiaService, private router : Router) { }
 
   ngOnInit(): void {
 
@@ -22,5 +23,9 @@ export class UltimasNoticiasComponent implements OnInit {
       this.ultimasNoticias = data;
     });
   }
+
+  visualizarNoticia(id : number) {
+    this.router.navigate(['noticia', id])
+}
 
 }

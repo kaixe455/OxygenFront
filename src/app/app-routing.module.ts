@@ -23,9 +23,12 @@ import { CrearPartidoComponent } from './admin-panel/crear-partido/crear-partido
 import { CrearPatrocinadorComponent } from './admin-panel/crear-patrocinador/crear-patrocinador.component';
 import { EditarNoticiasComponent } from './admin-panel/editar-noticias/editar-noticias.component';
 import { ModificarNoticiaComponent } from './admin-panel/editar-noticias/modificar-noticia/modificar-noticia.component';
+import { ClubComponent } from './club/club.component';
+import { EquiposComponent } from './equipos/equipos.component';
 import { HomeComponent } from './home/home.component';
 import { LoginUsuariosComponent } from './login-usuarios/login-usuarios.component';
 import { NoticiasComponent } from './noticias/noticias.component';
+import { VisualizarNoticiaComponent } from './noticias/visualizar-noticia/visualizar-noticia.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -54,7 +57,10 @@ const routes: Routes = [
   { path: 'administrarJugadores', component: AdministrarJugadoresComponent },
   { path: 'login', component: LoginUsuariosComponent },
   { path: 'modificarJuego/:id', component: ModificarJuegoComponent },
-  { path: 'administrarJuegos', component: AdministrarJuegosComponent }
+  { path: 'administrarJuegos', component: AdministrarJuegosComponent },
+  { path: 'noticia/:id', component: VisualizarNoticiaComponent },
+  { path: 'club', component: ClubComponent },
+  { path: 'equipos', component: EquiposComponent }
 
 ];
 
