@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Juego } from 'src/app/model/juego';
+import { JuegoService } from 'src/app/services/juego.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  juegos : Juego[] = []
+  juegos$ !: Observable<Juego[]>
+
+  constructor(private juegosService : JuegoService) {
+    this.juegos$ = this.juegosService.getJuegosFooter()
+    this.juegos$.subscribe(juegos => this.juegos = juegos)
+   }
 
   ngOnInit(): void {
   }

@@ -4,6 +4,7 @@ import { ImageTransform } from 'ngx-image-cropper';
 import { Observable } from 'rxjs';
 import { Equipo } from 'src/app/model/equipo';
 import { EquipoService } from 'src/app/services/equipo.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modificar-equipo',
@@ -16,7 +17,7 @@ export class ModificarEquipoComponent implements OnInit {
   equipo$ !: Observable<Equipo>
   idEquipo : number
 
-  constructor(private equipoService : EquipoService, private router: Router,private route: ActivatedRoute) {
+  constructor(private equipoService : EquipoService, private router: Router,private route: ActivatedRoute, private notificacionService : ToastrService) {
     this.idEquipo = this.route.snapshot.params['id'];
     this.equipoService.getEquipoById(this.idEquipo).subscribe(equipo => this.equipo = equipo)
    }
@@ -40,11 +41,14 @@ export class ModificarEquipoComponent implements OnInit {
       this.equipo.logo = this.croppedImage.split(",")[1]
       console.log(this.equipo)
       this.equipoService.updateEquipo(this.equipo.id,this.equipo).subscribe(data => {
+        if(data) {
+        this.notificacionService.success("Equipo actualizado correctamente")
         this.irGestionEquipos()
         this.imageChangedEvent = '';
         this.croppedImage = '';
         this.scale = 1;
         this.transform = {};
+      }
       })
 
     }

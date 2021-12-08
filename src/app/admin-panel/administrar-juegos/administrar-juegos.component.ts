@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Juego } from 'src/app/model/juego';
 import { JuegoService } from 'src/app/services/juego.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-administrar-juegos',
@@ -15,7 +16,7 @@ export class AdministrarJuegosComponent implements OnInit {
   juegos$!: Observable<Juego[]>;
   cargado : boolean
 
-  constructor(private juegosService : JuegoService, private router: Router) {
+  constructor(private juegosService : JuegoService, private router: Router, private notificacionService : ToastrService) {
     this.cargado = false
    }
 
@@ -32,6 +33,7 @@ export class AdministrarJuegosComponent implements OnInit {
 
   borrarJuego(id:number) {
     this.juegosService.deleteJuegoById(id)
+    this.notificacionService.success("Juego eliminado correctamente")
     this.cargado = false
     this.obtenerJuegos()
   }

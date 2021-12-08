@@ -27,8 +27,10 @@ import { ClubComponent } from './club/club.component';
 import { EquiposComponent } from './equipos/equipos.component';
 import { HomeComponent } from './home/home.component';
 import { LoginUsuariosComponent } from './login-usuarios/login-usuarios.component';
+import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { VisualizarNoticiaComponent } from './noticias/visualizar-noticia/visualizar-noticia.component';
+import { PatrocinadoresComponent } from './patrocinadores/patrocinadores.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -60,7 +62,9 @@ const routes: Routes = [
   { path: 'administrarJuegos', component: AdministrarJuegosComponent },
   { path: 'noticia/:id', component: VisualizarNoticiaComponent },
   { path: 'club', component: ClubComponent },
-  { path: 'equipos', component: EquiposComponent }
+  { path: 'equipos', component: EquiposComponent },
+  { path: 'patrocinadores', component: PatrocinadoresComponent },
+  { path: 'modificarPerfil', component: ModificarPerfilComponent }
 
 ];
 

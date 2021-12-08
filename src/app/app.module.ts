@@ -52,6 +52,9 @@ import { VisualizarNoticiaComponent } from './noticias/visualizar-noticia/visual
 import { CarrouselPatrocinadoresComponent } from './home/carrousel-patrocinadores/carrousel-patrocinadores.component';
 import { ClubComponent } from './club/club.component';
 import { EquiposComponent } from './equipos/equipos.component';
+import { PatrocinadoresComponent } from './patrocinadores/patrocinadores.component';
+import { ModificarPerfilComponent } from './modificar-perfil/modificar-perfil.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,9 @@ import { EquiposComponent } from './equipos/equipos.component';
     VisualizarNoticiaComponent,
     CarrouselPatrocinadoresComponent,
     ClubComponent,
-    EquiposComponent
+    EquiposComponent,
+    PatrocinadoresComponent,
+    ModificarPerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +114,7 @@ import { EquiposComponent } from './equipos/equipos.component';
     ImageCropperModule,
     NgbModule,
     NgSelectModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   schemas:[NO_ERRORS_SCHEMA],

@@ -38,9 +38,7 @@
             <h6 class="text-uppercase fw-bold">Oxygen Gaming</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto separator-oxygen" />
             <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
+              Somos un club fundado bajo unos valores que nos definen: esfuerzo, unión, respeto y trabajo. Estos valores han ido forjando el camino del club, los llevamos siempre presentes y marcarán el rumbo hasta nuestros objetivos.
             </p>
           </div>
           <!-- Grid column -->
@@ -50,17 +48,8 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold">Equipos</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto separator-oxygen" />
-            <p>
-              <a href="#!" class="text-white">MDBootstrap</a>
-            </p>
-            <p>
-              <a href="#!" class="text-white">MDWordPress</a>
-            </p>
-            <p>
-              <a href="#!" class="text-white">BrandFlow</a>
-            </p>
-            <p>
-              <a href="#!" class="text-white">Bootstrap Angular</a>
+            <p *ngFor="let juego of juegos$ | async">
+              <a href="equipos" class="text-white">{{juego.nombre}}</a>
             </p>
           </div>
           <!-- Grid column -->

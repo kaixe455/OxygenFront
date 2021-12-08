@@ -6,6 +6,7 @@ import { Juego } from 'src/app/model/juego';
 import { Jugador } from 'src/app/model/jugador';
 import { JuegoService } from 'src/app/services/juego.service';
 import { JugadorService } from 'src/app/services/jugador.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-jugador',
@@ -18,7 +19,7 @@ export class CrearJugadorComponent implements OnInit {
   juegos$!: Observable<Juego[]>;
   jugador : Jugador = new Jugador
 
-  constructor(private jugadorService: JugadorService, private juegosService: JuegoService,private router: Router) { }
+  constructor(private jugadorService: JugadorService, private juegosService: JuegoService,private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.juegos$ = this.juegosService.getJuegosAll()
@@ -28,10 +29,10 @@ export class CrearJugadorComponent implements OnInit {
 
   }
 
-  imageChangedEvent: any = '';
-    croppedImage: any = '';
-    scale = 1;
-    transform: ImageTransform = {};
+    imageChangedEvent: any = ''
+    croppedImage: any = ''
+    scale = 1
+    transform: ImageTransform = {}
 
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
@@ -42,14 +43,16 @@ export class CrearJugadorComponent implements OnInit {
 
     publicar() {
       this.jugador.foto = this.croppedImage.split(",")[1]
-      console.log(this.jugador)
       this.jugadorService.createJugador(this.jugador).subscribe(data => {
-        this.irCrearJugador()
-        this.jugador = new Jugador()
-        this.imageChangedEvent = '';
-        this.croppedImage = '';
-        this.scale = 1;
-        this.transform = {};
+        if(data) {
+          this.notificacionService.success("Jugador creado correctamente")
+          this.irCrearJugador()
+          this.jugador = new Jugador()
+          this.imageChangedEvent = ''
+          this.croppedImage = ''
+          this.scale = 1
+          this.transform = {}
+        }
       })
 
     }

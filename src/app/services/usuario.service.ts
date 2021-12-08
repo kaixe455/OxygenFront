@@ -49,4 +49,8 @@ export class UsuarioService {
   getUsuarioLogueado() : Observable<Usuario> {
     return this.user
   }
+
+  updateUsuario(usuario : Object, id : number) : Observable<any> {
+    return this.http.put(this.restUrl+'updateUsuario/'+id,usuario);
+  }
 }

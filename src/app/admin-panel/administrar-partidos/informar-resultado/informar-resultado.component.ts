@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Partido } from 'src/app/model/partido';
 import { PartidoService } from 'src/app/services/partido.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-informar-resultado',
@@ -15,7 +16,7 @@ export class InformarResultadoComponent implements OnInit {
   partido : Partido = new Partido()
   partido$! : Observable<Partido>
 
-  constructor(private router: Router,private route: ActivatedRoute, private partidoService : PartidoService,private zone: NgZone) {
+  constructor(private router: Router,private route: ActivatedRoute, private partidoService : PartidoService,private zone: NgZone, private notificacionService : ToastrService) {
     this.id = this.route.snapshot.params['id'];
    }
 
@@ -33,7 +34,10 @@ export class InformarResultadoComponent implements OnInit {
 
   actualizar() {
     this.partidoService.updatePartido(this.partido,this.partido.id).subscribe(data => {
-      this.irPartido(this.partido.id)
+      if(data) {
+        this.notificacionService.success("Resultado actualizado")
+        this.irPartido(this.partido.id)
+      }
     })
   }
 

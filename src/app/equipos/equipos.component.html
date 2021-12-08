@@ -5,15 +5,48 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row juegos-carousel mt-3">
-      <div class="col-md-2 mx-3" *ngFor="let juego of juegos$ | async" >
+      <div class="col-md-2 mx-3" *ngFor="let juego of juegos$ | async" (click) = "obtenerJugadorPorJuego(juego.id)" >
         <img class="juego-logo-preview" src="data:image/png;base64,{{juego.logo}}" alt="{{juego.nombre}}" />
       </div>
   </div>
   <div class="row">
     <div class="col-md-12">
       <hr class="d-inline-block mx-3 separator-oxygen mb-0" />
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mx-20" @fadeIn @fadeOut *ngFor="let jugador of jugadores$ | async">
+      <div class="card mt-3 inline" style="width: 20rem;">
+        <img [src]="'data:image/png;base64,'+ jugador.foto" class="card-img-top img-foto-jugador" alt="{{jugador.nickname}}">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <span>{{jugador.nombre}}</span>
+              <span class="nickname mx-3">"{{jugador.nickname}}"</span>
+              <span>{{jugador.apellido1}}</span>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <span>POSICIÓN:</span>
+              <span class="mx-3">
+                {{jugador.rol_equipo}}
+              </span>
+            </div>
+          </div>
+          <div class="row mt-50">
+            <div class="col-md-12 text-center">
+              <a href="{{jugador.twitter}}" target="_blank" class="btn btn-twitter mx-3"><i class="fa fa-twitter"></i>
+              </a>
+              <a href="{{jugador.twitch}}" target="_blank" class="btn btn-twitch mx-3"><i class="fa fa-twitch"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

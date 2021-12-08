@@ -5,16 +5,9 @@
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item" style="background-image: url('data:image/png;base64,{{slider.imagen}}')"
+    <div class="carousel-item" style="background-image: url('data:image/png;base64,{{slider.imagen}}');background-size:cover"
     *ngFor="let slider of sliders$ | async ; let first = first; let last = last"
     [ngClass]="{'active': first }" data-bs-interval="4000">
-      <div class="container">
-        <div class="carousel-caption" [ngClass]="{'text-start': first, 'text-end': last }">
-          <h1>{{slider.nombre}}</h1>
-          <p>{{slider.nombre}}</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-        </div>
-      </div>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">

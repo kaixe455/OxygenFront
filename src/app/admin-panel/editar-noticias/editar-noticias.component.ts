@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Noticia } from 'src/app/model/noticia';
 import { NoticiaService } from 'src/app/services/noticia.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editar-noticias',
@@ -14,7 +15,7 @@ export class EditarNoticiasComponent implements OnInit {
   noticias: Noticia[] = []
   noticias$!: Observable<Noticia[]>;
 
-  constructor(private noticiasService : NoticiaService, private router: Router) { }
+  constructor(private noticiasService : NoticiaService, private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerNoticias()
@@ -27,6 +28,7 @@ export class EditarNoticiasComponent implements OnInit {
 
   borrarNoticia(id:number) {
     this.noticiasService.deleteNoticiaById(id)
+    this.notificacionService.success("Noticia eliminada correctamente")
     this.obtenerNoticias()
     this.irEditarNoticias()
   }

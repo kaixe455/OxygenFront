@@ -1,4 +1,4 @@
-<div *ngIf="ultimasNoticias" class="p-4 mb-4 bg-light rounded-3 fondoNoticiaHover" (click) = "visualizarNoticia(ultimasNoticias[0].id)" style="background:linear-gradient(0deg, rgba(0, 217, 255, 0), rgba(36, 213, 245, 0.836)), url('data:image/png;base64,{{ultimasNoticias[0].imagen_destacada}}')">
+<div *ngIf="ultimasNoticias" class="p-4 mb-4 bg-light rounded-3 fondoNoticiaHover" (click) = "visualizarNoticia(ultimasNoticias[0].id)" style="background:linear-gradient(0deg, rgba(0, 217, 255, 0), rgba(36, 213, 245, 0.836)), url('data:image/png;base64,{{ultimasNoticias[0].imagen_destacada}}');background-size: cover;">
   <div class="container-fluid py-3">
     <div class="row">
       <div class="col-md-12">
@@ -16,7 +16,7 @@
 </div>
 <div class="row align-items-md-stretch">
   <div *ngIf="ultimasNoticias" class="col-md-6">
-    <div class="h-100 p-4 bg-light rounded-3 fondoNoticiaHover" (click) = "visualizarNoticia(ultimasNoticias[1].id)" style="background:linear-gradient(0deg, rgba(0, 217, 255, 0), rgba(36, 213, 245, 0.836)), url('data:image/png;base64,{{ultimasNoticias[1].imagen_destacada}}')">
+    <div class="h-100 p-4 bg-light rounded-3 fondoNoticiaHover" (click) = "visualizarNoticia(ultimasNoticias[1].id)" style="background:linear-gradient(0deg, rgba(0, 217, 255, 0), rgba(36, 213, 245, 0.836)), url('data:image/png;base64,{{ultimasNoticias[1].imagen_destacada}}');background-size: cover;">
       <div class="row">
         <div class="col-md-12">
           <span *ngFor="let categoria of ultimasNoticias[1].categorias"
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div *ngIf="ultimasNoticias" class="col-md-6">
-    <div class="h-100 p-4 bg-light border rounded-3 fondoNoticiaHover" (click) = "visualizarNoticia(ultimasNoticias[2].id)" style="background:linear-gradient(0deg, rgba(0, 217, 255, 0), rgba(36, 213, 245, 0.836)), url('data:image/png;base64,{{ultimasNoticias[2].imagen_destacada}}')">
+    <div class="h-100 p-4 bg-light border rounded-3 fondoNoticiaHover" (click) = "visualizarNoticia(ultimasNoticias[2].id)" style="background:linear-gradient(0deg, rgba(0, 217, 255, 0), rgba(36, 213, 245, 0.836)), url('data:image/png;base64,{{ultimasNoticias[2].imagen_destacada}}');background-size: cover;">
       <div class="row">
         <div class="col-md-12">
           <span *ngFor="let categoria of ultimasNoticias[2].categorias"

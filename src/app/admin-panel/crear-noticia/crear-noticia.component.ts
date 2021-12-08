@@ -7,6 +7,7 @@ import { Categoria } from 'src/app/model/categoria';
 import { Noticia } from 'src/app/model/noticia';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-noticia',
@@ -23,7 +24,7 @@ export class CrearNoticiaComponent implements OnInit {
   dropdownSettings = {};
 
 
-  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService,private router: Router) {
+  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService,private router: Router, private notificacionService : ToastrService) {
    }
 
   ngOnInit(): void {
@@ -56,7 +57,10 @@ export class CrearNoticiaComponent implements OnInit {
     }
     this.noticia.autor.id = 6
     this.noticiasService.createNoticia(this.noticia).subscribe(data => {
-      this.irGestionNoticias()
+      if(data) {
+        this.notificacionService.success("Noticia publicada")
+        this.irGestionNoticias()
+      }
     })
   }
 

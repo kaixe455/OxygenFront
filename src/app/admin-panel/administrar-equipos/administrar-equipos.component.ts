@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Equipo } from 'src/app/model/equipo';
 import { EquipoService } from 'src/app/services/equipo.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-administrar-equipos',
@@ -14,7 +15,7 @@ export class AdministrarEquiposComponent implements OnInit {
   equipos: Equipo[] = []
   equipos$!: Observable<Equipo[]>;
 
-  constructor(private equiposService : EquipoService, private router: Router) { }
+  constructor(private equiposService : EquipoService, private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerEquipos()
@@ -27,6 +28,7 @@ export class AdministrarEquiposComponent implements OnInit {
 
   borrarEquipo(id:number) {
     this.equiposService.deleteEquipoById(id)
+    this.notificacionService.success("Equipo eliminado correctamente")
     this.obtenerEquipos()
     this.irGestionarEquipos();
   }

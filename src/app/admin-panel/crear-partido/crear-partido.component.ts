@@ -9,6 +9,7 @@ import { Equipo } from 'src/app/model/equipo';
 import { PartidoService } from 'src/app/services/partido.service';
 import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-partido',
@@ -26,7 +27,7 @@ export class CrearPartidoComponent implements OnInit {
 
   @ViewChild('NgbdDatepicker') d !: NgbDateStruct;
 
-  constructor(private juegoService : JuegoService, private equipoService : EquipoService, private partidoService : PartidoService,private router: Router) { }
+  constructor(private juegoService : JuegoService, private equipoService : EquipoService, private partidoService : PartidoService,private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.juegos$ = this.juegoService.getJuegosAll()
@@ -43,8 +44,11 @@ export class CrearPartidoComponent implements OnInit {
     console.log(this.partido)
     this.partido.fx_inicio_fx = new Date(this.fechaDatePicker.year, this.fechaDatePicker.month - 1, this.fechaDatePicker.day);
     this.partidoService.createPartido(this.partido).subscribe(data => {
-      this.partido = new Partido()
-      this.irAdministrarPartidos()
+      if(data) {
+        this.notificacionService.success("Partido publicado correctamente")
+        this.partido = new Partido()
+        this.irAdministrarPartidos()
+      }
 
     })
   }

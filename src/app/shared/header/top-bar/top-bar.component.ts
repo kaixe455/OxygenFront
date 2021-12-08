@@ -14,6 +14,15 @@ export class TopBarComponent implements OnInit {
   logged : boolean
   usuario$ !: Observable<Usuario>
   usuario !: Usuario
+  puedeVerNoticias : boolean = false
+  puedeVerCategorias : boolean = false
+  puedeVerPatrocinadores : boolean = false
+  puedeVerPartidos : boolean = false
+  puedeVerJugadores : boolean = false
+  puedeVerEquipos : boolean = false
+  puedeVerSliders : boolean = false
+  puedeVerJuegos : boolean = false
+  puedeVerUsuarios : boolean = false
 
   constructor(private usuarioService : UsuarioService, private router : Router) {
     this.logged = false
@@ -21,13 +30,22 @@ export class TopBarComponent implements OnInit {
       this.logged = foo
       this.usuario$ = usuarioService.getUsuarioLogueado()
       this.usuario$.subscribe(usuario => {
-        this.usuario = usuario
+        this.usuario = usuario;
+        this.puedeVerNoticias = false
+        this.puedeVerCategorias = false
+        this.puedeVerPatrocinadores = false
+        this.puedeVerPartidos = false
+        this.puedeVerJugadores = false
+        this.puedeVerEquipos = false
+        this.puedeVerSliders = false
+        this.puedeVerJuegos = false
+        this.puedeVerUsuarios = false
+        this.obtenerPermisos()
       })
     });
    }
 
   ngOnInit(): void {
-
   }
 
   logOut() {
@@ -36,6 +54,38 @@ export class TopBarComponent implements OnInit {
 
   irModificarPerfil() {
     this.router.navigate(['modificarPerfil'])
+  }
+
+  obtenerPermisos()  {
+
+     // Administrador -> todos
+  //Manager -> juegos, partidos, jugadores, equipos
+  //Redactor -> noticias, categorias
+
+    if(this.usuario.rol.id == 1) {
+      console.log("Admin");
+      this.puedeVerNoticias = true
+      this.puedeVerCategorias = true
+      this.puedeVerPatrocinadores = true
+      this.puedeVerPartidos = true
+      this.puedeVerJugadores = true
+      this.puedeVerEquipos = true
+      this.puedeVerSliders = true
+      this.puedeVerJuegos = true
+      this.puedeVerUsuarios = true
+    }else if(this.usuario.rol.id == 38) {
+      console.log("Manager");
+      this.puedeVerPartidos = true
+      this.puedeVerJugadores = true
+      this.puedeVerEquipos = true
+      this.puedeVerJuegos = true
+
+    }else if (this.usuario.rol.id == 39) {
+      console.log("Redactor");
+      this.puedeVerNoticias = true
+      this.puedeVerCategorias = true
+    }
+
   }
 
 }

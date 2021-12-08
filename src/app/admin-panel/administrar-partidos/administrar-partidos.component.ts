@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Partido } from 'src/app/model/partido';
 import { PartidoService } from 'src/app/services/partido.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-administrar-partidos',
@@ -14,7 +15,7 @@ export class AdministrarPartidosComponent implements OnInit {
   partidos: Partido[] = []
   partidos$!: Observable<Partido[]>;
 
-  constructor(private partidosService : PartidoService, private router: Router) { }
+  constructor(private partidosService : PartidoService, private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerPartidos()
@@ -27,6 +28,7 @@ export class AdministrarPartidosComponent implements OnInit {
 
   borrarPartido(id:number) {
     this.partidosService.deletePartidoById(id);
+    this.notificacionService.success("Partido eliminado correctamente.")
     this.obtenerPartidos();
     this.irEditarPartidos();
   }
@@ -40,8 +42,12 @@ export class AdministrarPartidosComponent implements OnInit {
   }
 
   eliminarResultado(id:number) {
-    console.log(id)
-    this.partidosService.eliminarResultado(id).subscribe( reiniciado => {this.obtenerPartidos()})
+    this.partidosService.eliminarResultado(id).subscribe( reiniciado => {
+      if(reiniciado) {
+        this.notificacionService.success("Partido reiniciado.")
+        this.obtenerPartidos()
+      }
+    })
 
   }
 

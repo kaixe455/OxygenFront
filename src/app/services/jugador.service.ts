@@ -33,4 +33,8 @@ export class JugadorService {
   updateJugador(id: number, body: any): Observable<Object> {
     return this.http.put(this.restUrl + '/updateJugador/'+ id, body);
   }
+
+  getJugadoresByJuego(idJuego : number) : Observable<any> {
+    return this.http.get(this.restUrl+'/jugadoresbyjuego/' + idJuego);
+  }
 }

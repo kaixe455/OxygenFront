@@ -32,7 +32,7 @@ export class RegistroUsuariosComponent implements OnInit {
   }
 
   finalizarRegistro() {
-     this.rolService.getRolById(1).subscribe(data => {
+     this.rolService.getRolById(40).subscribe(data => {
       this.usuario.rol = data;
     }, error => console.log(error));
 

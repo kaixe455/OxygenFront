@@ -11,3 +11,9 @@
 hr {
   width: 100%;
 }
+
+.nickname {
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+}

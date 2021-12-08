@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Patrocinador } from 'src/app/model/patrocinador';
 import { PatrocinadorService } from 'src/app/services/patrocinador.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-administrar-patrocinadores',
@@ -14,7 +15,7 @@ export class AdministrarPatrocinadoresComponent implements OnInit {
   patrocinadores : Patrocinador[] = []
   patrocinadores$ !: Observable<Patrocinador[]>
 
-  constructor(private patrocinadorService : PatrocinadorService,private router: Router) { }
+  constructor(private patrocinadorService : PatrocinadorService,private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerPatrocinadores()
@@ -27,6 +28,7 @@ export class AdministrarPatrocinadoresComponent implements OnInit {
 
   borrarPatrocinador(id:number) {
     this.patrocinadorService.deletePatrocinadorById(id)
+    this.notificacionService.success("Patrocinador eliminado.")
     this.obtenerPatrocinadores()
     this.irGestionarPatrocinadores();
   }

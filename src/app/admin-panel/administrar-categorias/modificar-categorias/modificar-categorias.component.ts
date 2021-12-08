@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/model/categoria';
 import { CategoriaService } from 'src/app/services/categoria.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modificar-categorias',
@@ -16,7 +17,7 @@ export class ModificarCategoriasComponent implements OnInit {
   idCategoria : number
 
 
-  constructor(private categoriaService : CategoriaService, private router: Router,private route: ActivatedRoute) {
+  constructor(private categoriaService : CategoriaService, private router: Router,private route: ActivatedRoute, private notificacionService : ToastrService) {
 
     this.idCategoria = this.route.snapshot.params['id'];
     this.categoriaService.getCategoriaById(this.idCategoria).subscribe(categoria => this.categoria = categoria)
@@ -27,7 +28,10 @@ export class ModificarCategoriasComponent implements OnInit {
 
   publicar() {
     this.categoriaService.updateCategoria(this.categoria.id,this.categoria).subscribe(data => {
-      this.irGestionCategorias()
+      if(data) {
+        this.notificacionService.success("Categoría actualizada correctamente")
+        this.irGestionCategorias()
+      }
     })
   }
 

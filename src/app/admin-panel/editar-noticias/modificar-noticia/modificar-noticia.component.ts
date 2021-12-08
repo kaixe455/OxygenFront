@@ -6,6 +6,9 @@ import { Categoria } from 'src/app/model/categoria';
 import { Noticia } from 'src/app/model/noticia';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
+import { ToastrService } from 'ngx-toastr';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-modificar-noticia',
@@ -22,8 +25,12 @@ export class ModificarNoticiaComponent implements OnInit {
   selectedItems : Categoria[] = []
   dropdownSettings = {}
   idNoticia : number
+  loggedUser !: Usuario
+  loggedUser$ !: Observable<Usuario>
 
-  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService,private router: Router,private route: ActivatedRoute) {
+  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService
+    ,private router: Router,private route: ActivatedRoute, private notificacionService : ToastrService
+    , private usuarioService : UsuarioService) {
     this.idNoticia = this.route.snapshot.params['id'];
     this.noticiasService.getNoticiaById(this.idNoticia).subscribe(noticia => {
       this.noticia = noticia
@@ -37,6 +44,10 @@ export class ModificarNoticiaComponent implements OnInit {
       unSelectAllText: 'Deseleccionar todas',
       itemsShowLimit: 5,
     }
+    this.loggedUser$ = this.usuarioService.getUsuarioLogueado()
+    this.loggedUser$.subscribe(usuario => {
+      this.loggedUser = usuario
+    })
    }
 
   ngOnInit(): void {
@@ -59,10 +70,17 @@ export class ModificarNoticiaComponent implements OnInit {
     if(this.croppedImage) {
       this.noticia.imagen_destacada = this.croppedImage.split(",")[1]
     }
-    this.noticia.autor.id = 6
+    if(this.loggedUser) {
+      this.noticia.autor.id = this.loggedUser.id
     this.noticiasService.updateNoticia(this.noticia.id,this.noticia).subscribe(data => {
-      this.irGestionNoticias()
+      if(data) {
+        this.notificacionService.success("Noticia modificada correctamente")
+        this.irGestionNoticias()
+      }
     })
+    }else {
+      this.notificacionService.error("Necesita iniciar sesión")
+    }
   }
 
   handleUpload(event : any) {

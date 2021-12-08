@@ -4,6 +4,7 @@ import { ImageTransform } from 'ngx-image-cropper';
 import { Observable } from 'rxjs';
 import { Slider } from 'src/app/model/slider';
 import { SliderService } from 'src/app/services/slider.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modificar-slider',
@@ -16,7 +17,7 @@ export class ModificarSliderComponent implements OnInit {
   slider$ !: Observable<Slider>
   idSlider : number
 
-  constructor(private sliderService : SliderService, private router: Router,private route: ActivatedRoute) {
+  constructor(private sliderService : SliderService, private router: Router,private route: ActivatedRoute, private notificacionService : ToastrService ) {
     this.idSlider = this.route.snapshot.params['id'];
     this.sliderService.getSliderById(this.idSlider).subscribe(slider => this.slider = slider)
    }
@@ -24,7 +25,7 @@ export class ModificarSliderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  imageChangedEvent: any = '';
+    imageChangedEvent: any = '';
     croppedImage: any = '';
     scale = 1;
     transform: ImageTransform = {};
@@ -38,13 +39,15 @@ export class ModificarSliderComponent implements OnInit {
 
     publicar() {
       this.slider.imagen = this.croppedImage.split(",")[1]
-      console.log(this.slider)
       this.sliderService.updateSlider(this.slider.id,this.slider).subscribe(data => {
-        this.irGestionSliders()
-        this.imageChangedEvent = '';
-        this.croppedImage = '';
-        this.scale = 1;
-        this.transform = {};
+        if(data) {
+          this.notificacionService.success("Slider actualizado")
+          this.irGestionSliders()
+          this.imageChangedEvent = ''
+          this.croppedImage = ''
+          this.scale = 1
+          this.transform = {}
+        }
       })
 
     }

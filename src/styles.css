@@ -98,4 +98,41 @@ body {
   height: 10px;
 }
 
+.btn-twitter {
+  color: #fff !important;
+  background-color: #00acee !important;
+  border-color: #00acee !important;
+}
+
+.btn-twitter:hover {
+  color: #fff !important;
+  background-color: #00acee !important;
+  border-color: #0d7ad4 !important;
+}
+
+.btn-twitch {
+  color: #fff !important;
+  background-color: #5c16c5 !important;
+  border-color: #5c16c5 !important;
+}
+
+.btn-twitch:hover {
+  color: #fff !important;
+  background-color: #5c16c5 !important;
+  border-color: #400f88 !important;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mx-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
 

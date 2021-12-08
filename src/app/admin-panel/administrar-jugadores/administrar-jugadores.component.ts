@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Jugador } from 'src/app/model/jugador';
 import { JugadorService } from 'src/app/services/jugador.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-administrar-jugadores',
@@ -14,7 +15,7 @@ export class AdministrarJugadoresComponent implements OnInit {
   jugadores : Jugador[] = []
   jugadores$ !: Observable<Jugador[]>
 
-  constructor(private jugadoresService : JugadorService, private router: Router) { }
+  constructor(private jugadoresService : JugadorService, private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerJugadores()
@@ -27,6 +28,7 @@ export class AdministrarJugadoresComponent implements OnInit {
 
   borrarJugador(id:number) {
     this.jugadoresService.deleteJugadorById(id)
+    this.notificacionService.success("Jugador borrado correctamente")
     this.obtenerJugadores()
     this.irGestionarJugadores();
   }
@@ -37,6 +39,10 @@ export class AdministrarJugadoresComponent implements OnInit {
 
   modificarJugador(id:number) {
     this.router.navigate(['modificarJugador', id])
+  }
+
+  irCrearJugador() {
+    this.router.navigate(['crearJugador'])
   }
 
 }

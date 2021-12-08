@@ -4,6 +4,7 @@ import { ImageTransform } from 'ngx-image-cropper';
 import { Observable } from 'rxjs';
 import { Patrocinador } from 'src/app/model/patrocinador';
 import { PatrocinadorService } from 'src/app/services/patrocinador.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-patrocinador',
@@ -14,7 +15,7 @@ export class CrearPatrocinadorComponent implements OnInit {
 
   patrocinador : Patrocinador = new Patrocinador()
 
-  constructor(private patrocinadorService : PatrocinadorService, private router: Router) { }
+  constructor(private patrocinadorService : PatrocinadorService, private router: Router, private notificacionService : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -35,12 +36,15 @@ export class CrearPatrocinadorComponent implements OnInit {
       this.patrocinador.logo = this.croppedImage.split(",")[1]
       console.log(this.patrocinador)
       this.patrocinadorService.createPatrocinador(this.patrocinador).subscribe(data => {
-        this.patrocinador = new Patrocinador()
-        this.imageChangedEvent = '';
-        this.croppedImage = '';
-        this.scale = 1;
-        this.transform = {};
-        this.irCrearPatrocinador()
+        if(data) {
+          this.notificacionService.success("Patrocinador creado.")
+          this.patrocinador = new Patrocinador()
+          this.imageChangedEvent = ''
+          this.croppedImage = ''
+          this.scale = 1
+          this.transform = {}
+          this.irCrearPatrocinador()
+        }
       })
 
     }

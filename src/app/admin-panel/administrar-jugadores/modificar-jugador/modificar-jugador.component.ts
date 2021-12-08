@@ -6,6 +6,7 @@ import { Juego } from 'src/app/model/juego';
 import { Jugador } from 'src/app/model/jugador';
 import { JuegoService } from 'src/app/services/juego.service';
 import { JugadorService } from 'src/app/services/jugador.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modificar-jugador',
@@ -20,7 +21,7 @@ export class ModificarJugadorComponent implements OnInit {
   jugador$!: Observable<Jugador[]>;
   idJugador : number
 
-  constructor(private jugadoresService : JugadorService, private router: Router,private route: ActivatedRoute,private juegosService : JuegoService) {
+  constructor(private jugadoresService : JugadorService, private router: Router,private route: ActivatedRoute,private juegosService : JuegoService, private notificacionService : ToastrService) {
     this.idJugador = this.route.snapshot.params['id'];
     this.jugadoresService.getJugadorById(this.idJugador).subscribe(jugador => this.jugador = jugador)
    }
@@ -32,7 +33,7 @@ export class ModificarJugadorComponent implements OnInit {
     });
   }
 
-  imageChangedEvent: any = '';
+    imageChangedEvent: any = '';
     croppedImage: any = '';
     scale = 1;
     transform: ImageTransform = {};
@@ -48,11 +49,14 @@ export class ModificarJugadorComponent implements OnInit {
       this.jugador.foto = this.croppedImage.split(",")[1]
       console.log(this.jugador)
       this.jugadoresService.updateJugador(this.jugador.id,this.jugador).subscribe(data => {
-        this.irAdministrarJugadores()
-        this.imageChangedEvent = '';
-        this.croppedImage = '';
-        this.scale = 1;
-        this.transform = {};
+        if(data) {
+          this.notificacionService.success("Jugador modificado correctamente.")
+          this.irAdministrarJugadores()
+          this.imageChangedEvent = ''
+          this.croppedImage = ''
+          this.scale = 1
+          this.transform = {}
+        }
       })
 
     }

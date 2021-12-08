@@ -4,21 +4,21 @@
       <div class="row">
         <div class="col-md-3" *ngIf="logged && usuario">
           <img src="../../../../assets/images/image0.jpg" alt="Imagen de perfil" class="img-perfil">
-          <span class="text-white nombreUsuario">{{usuario.nombre}}</span>
+          <span class="text-white nombreUsuario mx-2">{{usuario.nombre}}</span>
           <button class="btn btn-oxygen mx-2 text-white" (click)="logOut()"><i class="fa fa-power-off" aria-hidden="true"></i></button>
           <button class="btn btn-oxygen mx-2 text-white" (click)="irModificarPerfil()"><i class="fa fa-cogs" aria-hidden="true"></i></button>
         </div>
         <div class="col-md-9 text-white">
           <ul class="nav" *ngIf="logged">
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarCategorias" routerLinkActive="active">Categorias</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="editarNoticias" routerLinkActive="active">Noticias</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarPatrocinadores">Patrocinadores</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarPartidos">Partidos</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarJugadores">Jugadores</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarEquipos" >Equipos</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarSliders" >Sliders</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarJuegos" >Juegos</button></li>
-            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" routerLink="administrarUsuarios" >Usuario</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerCategorias" routerLink="administrarCategorias" routerLinkActive="active">Categorias</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerNoticias" routerLink="editarNoticias" routerLinkActive="active">Noticias</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerPatrocinadores" routerLink="administrarPatrocinadores">Patrocinadores</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerPartidos" routerLink="administrarPartidos">Partidos</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerJugadores" routerLink="administrarJugadores">Jugadores</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerEquipos" routerLink="administrarEquipos" >Equipos</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerSliders" routerLink="administrarSliders" >Sliders</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerJuegos" routerLink="administrarJuegos" >Juegos</button></li>
+            <li class="nav-item"><button class="btn btn-oxygen mx-1 mt-1" *ngIf="puedeVerUsuarios" routerLink="administrarUsuarios" >Usuario</button></li>
           </ul>
         </div>
       </div>

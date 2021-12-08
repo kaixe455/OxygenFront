@@ -23,6 +23,10 @@
           #nombre="ngModel" id="campoWeb">
         </div>
         <div class="mb-3">
+              <span>Logo actual: </span>
+              <br>
+              <img [src]="'data:image/png;base64,'+ patrocinador.logo" class="img-patrocinador-logo" alt="{{patrocinador.nombre}}">
+              <br>
               <label for="validatedCustomFile">Logo del patrocinador</label>
               <br>
               <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">

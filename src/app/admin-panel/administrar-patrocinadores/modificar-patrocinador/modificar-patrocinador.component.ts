@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageTransform } from 'ngx-image-cropper';
 import { Patrocinador } from 'src/app/model/patrocinador';
 import { PatrocinadorService } from 'src/app/services/patrocinador.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modificar-patrocinador',
@@ -14,7 +15,7 @@ export class ModificarPatrocinadorComponent implements OnInit {
   patrocinador !: Patrocinador
   idPatrocinador : number
 
-  constructor(private patrocinadorService : PatrocinadorService,private router: Router,private route: ActivatedRoute) {
+  constructor(private patrocinadorService : PatrocinadorService,private router: Router,private route: ActivatedRoute, private notificacionService : ToastrService) {
 
     this.idPatrocinador = this.route.snapshot.params['id'];
     this.patrocinadorService.getPatrocinadorById(this.idPatrocinador).subscribe(patrocinador => this.patrocinador = patrocinador)
@@ -24,7 +25,7 @@ export class ModificarPatrocinadorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  imageChangedEvent: any = '';
+    imageChangedEvent: any = '';
     croppedImage: any = '';
     scale = 1;
     transform: ImageTransform = {};
@@ -37,14 +38,18 @@ export class ModificarPatrocinadorComponent implements OnInit {
     }
 
     publicar() {
-      this.patrocinador.logo = this.croppedImage.split(",")[1]
-      console.log(this.patrocinador)
+      if(this.croppedImage != '') {
+        this.patrocinador.logo = this.croppedImage.split(",")[1]
+      }
       this.patrocinadorService.updatePatrocinador(this.patrocinador.id,this.patrocinador).subscribe(data => {
-        this.irGestionPatrocinadores()
-        this.imageChangedEvent = '';
-        this.croppedImage = '';
-        this.scale = 1;
-        this.transform = {};
+        if(data) {
+          this.notificacionService.success("Patrocinador modificado correctamente.")
+          this.irGestionPatrocinadores()
+          this.imageChangedEvent = ''
+          this.croppedImage = ''
+          this.scale = 1
+          this.transform = {}
+        }
       })
 
     }
