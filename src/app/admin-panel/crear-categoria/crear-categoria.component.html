@@ -11,13 +11,26 @@
           <label for="campoNombre" class="form-label">Nombre de la categoria</label>
           <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre"
           #nombre="ngModel" id="campoNombre">
+          <div *ngIf="errorNombre" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoDescripcion" class="form-label">Descripción de la categoria</label>
           <input type="text" class="form-control" [(ngModel)]="categoria.descripcion" name="descripcion"
           #nombre="ngModel" id="campoDescripcion">
+          <div *ngIf="errorDescripcion" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <br>
         <button class="btn btn-oxygen" (click)="publicar()" >Añadir categoria</button>
+        <button class="btn btn-oxygen mx-3" (click)="irGestionCategorias()">Volver</button>
   </form>
 </div>

@@ -11,11 +11,23 @@
           <label for="campoTitulo" class="form-label">Titulo</label>
           <input type="text" class="form-control" [(ngModel)]="noticia.titulo" name="titulo"
           #titulo="ngModel" id="campoTitulo">
+          <div *ngIf="errorTitulo" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoSubtitulo" class="form-label">Subtitulo</label>
           <input type="text" class="form-control" [(ngModel)]="noticia.subtitulo" name="subtitulo"
           #subtitulo="ngModel" id="campoSubtitulo">
+          <div *ngIf="errorSubtitulo" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoSubtitulo" class="form-label">Categorias</label>
@@ -29,17 +41,35 @@
               (onSelectAll)="onSelectAll($event)"
           >
           </ng-multiselect-dropdown>
+          <div *ngIf="errorCategorias" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Hay que seleccionar al menos una categoria.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoContenido" class="form-label">Contenido</label>
           <textarea id="campoContenido" class="form-control" id="exampleFormControlTextarea1" rows="10" [(ngModel)]="noticia.contenido" name="contenido"
           #contenido="ngModel"></textarea>
+          <div *ngIf="errorContenido" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="validatedCustomFile">Imagen Destacada</label>
           <br>
-          <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
-          <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+          <input class="btn btn-oxygen mx-3 mb-3" type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+          <button class="btn btn-oxygen mx-3 mb-3" (click)="zoomOut()">Zoom -</button> <button class="btn btn-oxygen mx-3 mb-3" (click)="zoomIn()">Zoom +</button>
+          <div *ngIf="errorImagen" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              La imagen es obligatoria.
+            </div>
+          </div>
           <image-cropper
             [imageChangedEvent]="imageChangedEvent"
             (imageCropped)="imageCropped($event)"
@@ -53,6 +83,7 @@
           <div class="invalid-feedback">Formato incorrecto</div>
         </div>
         <br>
-        <button class="btn btn-oxygen" (click)="publicar();">Publicar Noticia</button>
+        <button class="btn btn-oxygen mx-3" (click)="publicar()">Publicar Noticia</button>
+        <button class="btn btn-oxygen mx-3" (click)="irGestionNoticias()">Volver</button>
   </form>
 </div>

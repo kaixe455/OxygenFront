@@ -1,3 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
 <div class="modal fade registroModal" id="registroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -8,19 +13,40 @@
       <form #registroForm="ngForm">
       <div class="modal-body" id="registroPaso1" *ngIf="visiblePaso1">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <label for="campoNombre" class="form-label">Nombre</label>
             <input type="email" class="form-control" [(ngModel)]="usuario.nombre" name="nombre"
-            #nombre="ngModel" id="exampleInputEmail1">
+            #nombre="ngModel" id="campoNombre">
+            <br>
+            <div *ngIf="errorNombre" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Este campo no puede estar vacío ni contener números
+              </div>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Primer Apellido</label>
+            <label for="campoApellido1" class="form-label">Primer Apellido</label>
             <input type="text" class="form-control" [(ngModel)]="usuario.primer_apellido" name="primer_apellido"
-            #primer_apellido="ngModel" id="exampleInputPassword1">
+            #primer_apellido="ngModel" id="campoApellido1">
+            <br>
+            <div *ngIf="errorPrimerApellido" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Este campo no puede estar vacío ni contener números
+              </div>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Segundo Apellido</label>
+            <label for="campoApellido2" class="form-label">Segundo Apellido</label>
             <input type="text" class="form-control" [(ngModel)]="usuario.segundo_apellido" name="segundo_apellido"
-            #segundo_apellido="ngModel" id="exampleInputPassword1">
+            #segundo_apellido="ngModel" id="campoApellido2">
+            <br>
+            <div *ngIf="errorSegundoApellido" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Este campo no puede estar vacío ni contener números
+              </div>
+            </div>
           </div>
           <br>
           <button (click)="siguientePaso()" class="btn btn-oxygen">Siguiente</button>
@@ -31,20 +57,41 @@
             <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
             <input type="email" class="form-control" [(ngModel)]="usuario.correoElectronico" name="correoElectronico"
             #correoElectronico="ngModel" id="exampleInputEmail1">
+            <br>
+            <div *ngIf="errorCorreo" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Este campo no tiene formato correo electrónico
+              </div>
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">NickName</label>
             <input type="text" class="form-control " [(ngModel)]="usuario.nickname" name="nickname"
             #nickname="ngModel" id="exampleInputPassword1">
+            <br>
+            <div *ngIf="errorNickname" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Este campo no puede estar vacío
+              </div>
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" [(ngModel)]="usuario.password" name="password"
+            <input type="password" class="form-control" [(ngModel)]="password1" name="password"
             #password="ngModel" id="exampleInputPassword1">
+            <br>
+            <div *ngIf="errorPassword" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Las contraseñas no coinciden o están vacias.
+              </div>
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Repita Contraseña</label>
-            <input type="password" class="form-control" [(ngModel)]="usuario.password" name="password"
+            <input type="password" class="form-control" [(ngModel)]="password2" name="password"
             #password="ngModel" id="exampleInputPassword1">
           </div>
           <br>

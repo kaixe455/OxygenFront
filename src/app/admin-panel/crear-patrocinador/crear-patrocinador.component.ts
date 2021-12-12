@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Patrocinador } from 'src/app/model/patrocinador';
 import { PatrocinadorService } from 'src/app/services/patrocinador.service';
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-crear-patrocinador',
@@ -14,8 +15,14 @@ import { ToastrService } from 'ngx-toastr';
 export class CrearPatrocinadorComponent implements OnInit {
 
   patrocinador : Patrocinador = new Patrocinador()
+  errorNombre : boolean = false
+  errorDescripcion : boolean = false
+  errorWeb : boolean = false
+  errorLogo: boolean = false
+  patrocinadorValido : boolean = false
 
-  constructor(private patrocinadorService : PatrocinadorService, private router: Router, private notificacionService : ToastrService) { }
+
+  constructor(private patrocinadorService : PatrocinadorService, private router: Router, private notificacionService : ToastrService, private validator : ValidatorService) { }
 
   ngOnInit(): void {
   }
@@ -34,19 +41,27 @@ export class CrearPatrocinadorComponent implements OnInit {
 
     publicar() {
       this.patrocinador.logo = this.croppedImage.split(",")[1]
-      console.log(this.patrocinador)
-      this.patrocinadorService.createPatrocinador(this.patrocinador).subscribe(data => {
-        if(data) {
-          this.notificacionService.success("Patrocinador creado.")
-          this.patrocinador = new Patrocinador()
-          this.imageChangedEvent = ''
-          this.croppedImage = ''
-          this.scale = 1
-          this.transform = {}
-          this.irCrearPatrocinador()
-        }
-      })
-
+      this.errorNombre = false
+      this.errorDescripcion = false
+      this.errorWeb = false
+      this.errorLogo = false
+      this.patrocinadorValido = true
+      this.validarCampos()
+      if(this.patrocinadorValido) {
+        this.patrocinadorService.createPatrocinador(this.patrocinador).subscribe(data => {
+          if(data) {
+            this.notificacionService.success("Patrocinador creado.")
+            this.patrocinador = new Patrocinador()
+            this.imageChangedEvent = ''
+            this.croppedImage = ''
+            this.scale = 1
+            this.transform = {}
+            this.irCrearPatrocinador()
+          }
+        })
+      } else {
+        this.notificacionService.error("Hay errores en el formulario")
+      }
     }
 
     zoomOut() {
@@ -67,6 +82,38 @@ export class CrearPatrocinadorComponent implements OnInit {
 
     irCrearPatrocinador () {
       this.router.navigate(['crearPatrocinador'])
+    }
+
+    irGestionarPatrocinadores() {
+      this.router.navigate(['administrarPatrocinadores'])
+    }
+
+    validarCampos() {
+
+      // valido que el campo nombre no esté vacio
+      if(this.validator.esCampoVacio(this.patrocinador.nombre)) {
+        this.errorNombre = true
+      }
+      // valido que el campo descripcion no este vacio
+      if(this.validator.esCampoVacio(this.patrocinador.descripcion)) {
+        this.errorDescripcion = true
+      }
+      // valido que el campo pagina web no este vacio y tenga formato web
+      if(this.validator.esCampoVacio(this.patrocinador.urlEmpresa)) {
+        this.errorWeb = true
+      }else {
+        if(!this.validator.esUrl(this.patrocinador.urlEmpresa)) {
+          this.errorWeb = true
+        }
+      }
+      // valido que tenga logo
+      if(this.validator.esCampoVacio(this.patrocinador.logo)) {
+        this.errorLogo = true
+      }
+      if(this.errorLogo || this.errorNombre || this.errorDescripcion || this.errorWeb) {
+        this.patrocinadorValido = false
+      }
+
     }
 
 }

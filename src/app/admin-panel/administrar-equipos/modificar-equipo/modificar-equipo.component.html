@@ -11,12 +11,28 @@
           <label for="campoNombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" [(ngModel)]="equipo.nombre" name="nombre"
           #nombre="ngModel" id="campoNombre">
+          <div *ngIf="errorNombre" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
+              <span>Logo actual: </span>
+              <br>
+              <img [src]="'data:image/png;base64,'+ equipo.logo" class="img-equipo-logo" alt="{{equipo.nombre}}">
+              <br>
               <label for="validatedCustomFile">Logo del equipo</label>
               <br>
-              <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
-              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+              <input class="btn btn-oxygen mx-3" type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button class="btn btn-oxygen mx-3" (click)="zoomOut()">Zoom -</button> <button class="btn btn-oxygen mx-3" (click)="zoomIn()">Zoom +</button>
+              <div *ngIf="errorLogo" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  El logo es obligatorio.
+                </div>
+              </div>
               <image-cropper class="cropper-logo-equipo"
                 [imageChangedEvent]="imageChangedEvent"
                 (imageCropped)="imageCropped($event)"
@@ -27,9 +43,9 @@
                 format="png">
               </image-cropper>
               <img class="previsualizacion" [src]="croppedImage" />
-              <div class="invalid-feedback">Formato incorrecto</div>
         </div>
         <br>
         <button class="btn btn-oxygen" (click)="publicar()" >Actualizar Equipo</button>
+        <button class="btn btn-oxygen mx-3" (click)="irGestionEquipos()">Volver</button>
   </form>
 </div>

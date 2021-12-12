@@ -30,21 +30,34 @@
       <div class="col-md-2">
           <label for="campoPuntuacionLocal" class="form-label">Resultado Local</label>
           <input type="text" class="form-control" [(ngModel)]="partido.puntuacionLocal" name="campoPuntuacionLocal"
-          #nombre="ngModel" id="campoPuntuacionLocal">
+          #puntuacionlocal="ngModel" id="campoPuntuacionLocal">
+          <div *ngIf="errorResultadoLocal" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo debe ser numérico.
+            </div>
+          </div>
       </div>
       <div class="col-md-4 text-center texto-20 display-table">
       </div>
       <div class="col-md-2">
           <label for="campoPuntuacionVisitante" class="form-label">Resultado Vitante</label>
           <input type="text" class="form-control" [(ngModel)]="partido.puntuacionVisitante" name="campoPuntuacionVisitante"
-          #nombre="ngModel" id="campoPuntuacionVisitante">
+          #puntuacionVisitante="ngModel" id="campoPuntuacionVisitante">
+          <div *ngIf="errorResultadoVisitante" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo debe ser numérico.
+            </div>
+          </div>
       </div>
       <div class="col-md-2">
       </div>
     </div>
-    <div class="row mt-6">
+    <div class="row mt-20">
       <div class="col-md-12">
-        <button class="btn btn-oxygen" (click)="actualizar()">Publicar</button>
+        <button class="btn btn-oxygen mx-3" (click)="actualizar()">Publicar</button>
+        <button class="btn btn-oxygen mx-3" (click)="irPartidos()">Volver</button>
       </div>
     </div>
   </div>

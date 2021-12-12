@@ -4,6 +4,7 @@ import { ImageCroppedEvent, ImageCropperComponent, ImageTransform, LoadedImage }
 import { EquipoService } from 'src/app/services/equipo.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-crear-equipo',
@@ -12,9 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CrearEquipoComponent implements OnInit {
 
-  equipo: Equipo = new Equipo();
+  equipo: Equipo = new Equipo()
+  errorNombre : boolean = false
+  errorLogo : boolean = false
+  equipoValido : boolean = true
 
-  constructor( private equipoService : EquipoService, private router: Router, private notificacionService : ToastrService) { }
+
+  constructor( private equipoService : EquipoService, private router: Router, private notificacionService : ToastrService, private validator : ValidatorService) { }
    ngOnInit(): void {
   }
 
@@ -32,19 +37,25 @@ export class CrearEquipoComponent implements OnInit {
 
     publicar() {
       this.equipo.logo = this.croppedImage.split(",")[1]
-      console.log(this.equipo)
+      this.errorLogo = false
+      this.errorNombre = false
+      this.equipoValido = true
+      this.validarCampos()
+      if(this.equipoValido) {
       this.equipoService.createEquipo(this.equipo).subscribe(data => {
-        if(data) {
-          this.notificacionService.success("Equipo creado correctamente")
-          this.irCrearEquipo()
-          this.equipo = new Equipo()
-          this.imageChangedEvent = '';
-          this.croppedImage = '';
-          this.scale = 1;
-          this.transform = {};
-        }
-      })
-
+          if(data) {
+            this.notificacionService.success("Equipo creado correctamente")
+            this.irCrearEquipo()
+            this.equipo = new Equipo()
+            this.imageChangedEvent = '';
+            this.croppedImage = '';
+            this.scale = 1;
+            this.transform = {};
+          }
+        })
+      }else{
+        this.notificacionService.error("Error en algún campo del formulario")
+      }
     }
 
     zoomOut() {
@@ -65,6 +76,26 @@ export class CrearEquipoComponent implements OnInit {
 
     irCrearEquipo () {
       this.router.navigate(['crearEquipo'])
+    }
+
+    validarCampos() {
+
+      // valido que el campo nombre no esté vacio
+      if(this.validator.esCampoVacio(this.equipo.nombre)) {
+        this.errorNombre = true
+      }
+      // valido que el campo logo no este vacio
+      if(this.validator.esCampoVacio(this.equipo.logo)) {
+        this.errorLogo = true
+      }
+      if(this.errorLogo || this.errorNombre) {
+        this.equipoValido = false
+      }
+
+    }
+
+    irGestionEquipos() {
+      this.router.navigate(['administrarEquipos'])
     }
 
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-top-bar',
@@ -24,7 +25,7 @@ export class TopBarComponent implements OnInit {
   puedeVerJuegos : boolean = false
   puedeVerUsuarios : boolean = false
 
-  constructor(private usuarioService : UsuarioService, private router : Router) {
+  constructor(private usuarioService : UsuarioService, private router : Router, private notificacionService : ToastrService) {
     this.logged = false
     this.usuarioService.isLoggedUser().subscribe(foo => {
       this.logged = foo
@@ -50,6 +51,7 @@ export class TopBarComponent implements OnInit {
 
   logOut() {
     this.usuarioService.logOutUser()
+    this.notificacionService.success("Sesión cerrado con exito")
   }
 
   irModificarPerfil() {

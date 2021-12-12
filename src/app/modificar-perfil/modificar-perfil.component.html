@@ -16,36 +16,78 @@
           <label for="campoNombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre"
           #nombre="ngModel" id="campoNombre">
+          <div *ngIf="errorNombre" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio o no es un texto.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoApellido1" class="form-label">Primer Apellido</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.primer_apellido" name="apellido1"
           #apellido1="ngModel" id="campoApellido1">
+          <div *ngIf="errorPrimerApellido" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio o no es un texto.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoApellido2" class="form-label">Segundo Apellido</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.segundo_apellido" name="apellido2"
           #apellido2="ngModel" id="campoApellido2">
+          <div *ngIf="errorSegundoApellido" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio o no es un texto.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoCorreo" class="form-label">Correo Eléctronico</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.correoElectronico" name="correo"
           #correo="ngModel" id="campoCorreo">
+          <div *ngIf="errorCorreo" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio o no es un correo electrónico.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoNickname" class="form-label">NickName</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.nickname" name="nickname"
           #nickname="ngModel" id="campoNickname">
+          <div *ngIf="errorNickname" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio o no es un texto.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoTwitter" class="form-label">URL de Twitter</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.twitter" name="twitter"
           #twitter="ngModel" id="campoTwitter">
+          <div *ngIf="errorTwitter" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo debe ser una URL.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoTwitch" class="form-label">URL de Twitch</label>
           <input type="text" class="form-control" [(ngModel)]="usuario.twitch" name="twitch"
           #twitch="ngModel" id="campoTwitch">
+          <div *ngIf="errorTwitch" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo debe ser una URL.
+            </div>
+          </div>
         </div>
         <br>
         <button class="btn btn-oxygen" (click)="modificarPerfil(usuario.id)"  >Actualizar perfil</button>

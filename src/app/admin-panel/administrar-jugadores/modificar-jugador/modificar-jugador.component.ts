@@ -7,6 +7,7 @@ import { Jugador } from 'src/app/model/jugador';
 import { JuegoService } from 'src/app/services/juego.service';
 import { JugadorService } from 'src/app/services/jugador.service';
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-modificar-jugador',
@@ -20,8 +21,16 @@ export class ModificarJugadorComponent implements OnInit {
   jugador !: Jugador
   jugador$!: Observable<Jugador[]>;
   idJugador : number
+  errorNombre : boolean = false
+  errorPrimerApellido : boolean = false
+  errorNickname : boolean = false
+  errorJuego : boolean = false
+  errorTwitter : boolean = false
+  errorTwitch : boolean = false
+  errorRol : boolean = false
+  jugadorValido : boolean = true
 
-  constructor(private jugadoresService : JugadorService, private router: Router,private route: ActivatedRoute,private juegosService : JuegoService, private notificacionService : ToastrService) {
+  constructor(private jugadoresService : JugadorService, private router: Router,private route: ActivatedRoute,private juegosService : JuegoService, private notificacionService : ToastrService, private validator : ValidatorService) {
     this.idJugador = this.route.snapshot.params['id'];
     this.jugadoresService.getJugadorById(this.idJugador).subscribe(jugador => this.jugador = jugador)
    }
@@ -46,18 +55,32 @@ export class ModificarJugadorComponent implements OnInit {
     }
 
     publicar() {
-      this.jugador.foto = this.croppedImage.split(",")[1]
-      console.log(this.jugador)
-      this.jugadoresService.updateJugador(this.jugador.id,this.jugador).subscribe(data => {
-        if(data) {
-          this.notificacionService.success("Jugador modificado correctamente.")
-          this.irAdministrarJugadores()
-          this.imageChangedEvent = ''
-          this.croppedImage = ''
-          this.scale = 1
-          this.transform = {}
-        }
-      })
+      if(this.croppedImage.split(",")[1]) {
+        this.jugador.foto = this.croppedImage.split(",")[1]
+      }
+      this.errorPrimerApellido = false
+      this.errorNombre = false
+      this.errorJuego = false
+      this.errorNickname = false
+      this.errorRol = false
+      this.errorTwitch = false
+      this.errorTwitter = false
+      this.jugadorValido = true
+      this.validarCampos()
+      if(this.jugadorValido) {
+        this.jugadoresService.updateJugador(this.jugador.id,this.jugador).subscribe(data => {
+          if(data) {
+            this.notificacionService.success("Jugador modificado correctamente.")
+            this.irAdministrarJugadores()
+            this.imageChangedEvent = ''
+            this.croppedImage = ''
+            this.scale = 1
+            this.transform = {}
+          }
+        })
+      }else{
+        this.notificacionService.error("Error en algún campo del formulario")
+      }
 
     }
 
@@ -79,6 +102,43 @@ export class ModificarJugadorComponent implements OnInit {
 
     irAdministrarJugadores() {
       this.router.navigate(['administrarJugadores'])
+    }
+
+    validarCampos() {
+
+      // valido que el campo nombre no esté vacio
+      if(this.validator.esCampoVacio(this.jugador.nombre)) {
+        this.errorNombre = true
+      }
+      // valido que el campo primer apellido no este vacio
+      if(this.validator.esCampoVacio(this.jugador.apellido1)) {
+        this.errorPrimerApellido = true
+      }
+      // valido que el campo nickname no este vacio
+      if(this.validator.esCampoVacio(this.jugador.nickname)) {
+        this.errorNickname = true
+      }
+      // valido que el campo twitch sea una url cuando no esta vacio
+      if(!this.validator.esCampoVacio(this.jugador.twitch) && !this.validator.esUrl(this.jugador.twitch)) {
+        this.errorTwitch = true
+      }
+      // valido que el campo twitter sea una url cuando no esta vacio
+      if(!this.validator.esCampoVacio(this.jugador.twitter) && !this.validator.esUrl(this.jugador.twitter)) {
+        this.errorTwitter = true
+      }
+      // valido que se haya seleccionado un juego
+      if(this.jugador.juego.id == 0) {
+        this.errorJuego = true
+      }
+      // valido que se haya indicado un rol en el equipo
+      if(this.validator.esCampoVacio(this.jugador.rol_equipo)) {
+        this.errorRol = true
+      }
+
+      if(this.errorPrimerApellido || this.errorNombre || this.errorJuego || this.errorNickname || this.errorRol || this.errorTwitch || this.errorTwitter) {
+        this.jugadorValido = false
+      }
+
     }
 
 }

@@ -8,6 +8,8 @@ import { Noticia } from 'src/app/model/noticia';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorService } from 'src/app/services/validator.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-crear-noticia',
@@ -22,9 +24,15 @@ export class CrearNoticiaComponent implements OnInit {
   dropdownList : any[] = [];
   selectedItems : Categoria[] = [];
   dropdownSettings = {};
+  errorTitulo : boolean = false
+  errorSubtitulo : boolean = false
+  errorCategorias : boolean = false
+  errorContenido : boolean = false
+  errorImagen : boolean = false
+  noticiaValida : boolean = false
 
 
-  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService,private router: Router, private notificacionService : ToastrService) {
+  constructor(private categoriasService: CategoriaService, private noticiasService: NoticiaService,private router: Router, private notificacionService : ToastrService, private validator : ValidatorService, private usuarioService : UsuarioService) {
    }
 
   ngOnInit(): void {
@@ -55,13 +63,32 @@ export class CrearNoticiaComponent implements OnInit {
     if(this.croppedImage) {
       this.noticia.imagen_destacada = this.croppedImage.split(",")[1]
     }
-    this.noticia.autor.id = 6
-    this.noticiasService.createNoticia(this.noticia).subscribe(data => {
-      if(data) {
-        this.notificacionService.success("Noticia publicada")
-        this.irGestionNoticias()
-      }
-    })
+    //obtengo el autor
+
+    if(this.usuarioService.isLoggedUser()) {
+      this.usuarioService.getUsuarioLogueado().subscribe(usuario => this.noticia.autor.id = usuario.id)
+    } else {
+      // el usuario admin hasta securizar servicios
+      this.noticia.autor.id = 6
+    }
+    //valido
+    this.errorCategorias = false
+    this.errorContenido = false
+    this.errorSubtitulo = false
+    this.errorTitulo = false
+    this.errorImagen = false
+    this.noticiaValida = true
+    this.validarCampos()
+    if(this.noticiaValida) {
+      this.noticiasService.createNoticia(this.noticia).subscribe(data => {
+        if(data) {
+          this.notificacionService.success("Noticia publicada")
+          this.irGestionNoticias()
+        }
+      })
+    } else {
+      this.notificacionService.error("Hay errores en el formulario")
+    }
   }
 
   handleUpload(event : any) {
@@ -103,6 +130,34 @@ export class CrearNoticiaComponent implements OnInit {
           ...this.transform,
           scale: this.scale
       };
+    }
+
+    validarCampos() {
+
+      // valido que el campo titulo no esté vacio
+      if(this.validator.esCampoVacio(this.noticia.titulo)) {
+        this.errorTitulo = true
+      }
+      // valido que el campo subtitulo no este vacio
+      if(this.validator.esCampoVacio(this.noticia.subtitulo)) {
+        this.errorSubtitulo = true
+      }
+      // valido que haya selecionado al menos una categoria
+      if(!this.noticia.categorias[0]) {
+        this.errorCategorias = true
+      }
+      // valido que el campo contenido no este vacio
+      if(this.validator.esCampoVacio(this.noticia.contenido)) {
+        this.errorContenido = true
+      }
+      // valido que tenga imagen
+      if(this.validator.esCampoVacio(this.noticia.imagen_destacada)) {
+        this.errorImagen = true
+      }
+      if(this.errorTitulo || this.errorSubtitulo || this.errorCategorias || this.errorContenido || this.errorImagen) {
+        this.noticiaValida = false
+      }
+
     }
 
 

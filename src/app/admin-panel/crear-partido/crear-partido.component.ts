@@ -10,6 +10,7 @@ import { PartidoService } from 'src/app/services/partido.service';
 import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-crear-partido',
@@ -24,10 +25,16 @@ export class CrearPartidoComponent implements OnInit {
   equipos : Equipo[] = []
   equipos$!: Observable<Equipo[]>;
   fechaDatePicker !: NgbDateStruct
+  errorJuego : boolean = false
+  errorCompeticion : boolean = false
+  errorEquipoLocal : boolean = false
+  errorEquipoVisitante : boolean = false
+  errorFechaInicio : boolean = false
+  partidoValido : boolean = true
 
   @ViewChild('NgbdDatepicker') d !: NgbDateStruct;
 
-  constructor(private juegoService : JuegoService, private equipoService : EquipoService, private partidoService : PartidoService,private router: Router, private notificacionService : ToastrService) { }
+  constructor(private juegoService : JuegoService, private equipoService : EquipoService, private partidoService : PartidoService,private router: Router, private notificacionService : ToastrService, private validator : ValidatorService) { }
 
   ngOnInit(): void {
     this.juegos$ = this.juegoService.getJuegosAll()
@@ -41,16 +48,28 @@ export class CrearPartidoComponent implements OnInit {
   }
 
   crearPartido() {
-    console.log(this.partido)
-    this.partido.fx_inicio_fx = new Date(this.fechaDatePicker.year, this.fechaDatePicker.month - 1, this.fechaDatePicker.day);
-    this.partidoService.createPartido(this.partido).subscribe(data => {
-      if(data) {
-        this.notificacionService.success("Partido publicado correctamente")
-        this.partido = new Partido()
-        this.irAdministrarPartidos()
-      }
+    if(this.fechaDatePicker) {
+      this.partido.fx_inicio_fx = new Date(this.fechaDatePicker.year, this.fechaDatePicker.month - 1, this.fechaDatePicker.day);
+    }
+    this.errorJuego = false
+    this.errorCompeticion = false
+    this.errorEquipoLocal = false
+    this.errorEquipoVisitante = false
+    this.errorFechaInicio = false
+    this.partidoValido = true
+    this.validarCampos()
+    if(this.partidoValido) {
+      this.partidoService.createPartido(this.partido).subscribe(data => {
+        if(data) {
+          this.notificacionService.success("Partido publicado correctamente")
+          this.partido = new Partido()
+          this.irAdministrarPartidos()
+        }
 
-    })
+      })
+    } else {
+      this.notificacionService.error("Hay errores en el formulario")
+    }
   }
 
   irCrearPartido () {
@@ -59,6 +78,36 @@ export class CrearPartidoComponent implements OnInit {
 
   irAdministrarPartidos () {
     this.router.navigate(['administrarPartidos'])
+  }
+
+  validarCampos() {
+
+    // valido que el campo juego id no sea = 0 que es sin seleccionar
+    if(this.partido.juego.id == 0) {
+      this.errorJuego = true
+    }
+    // valido que el campo competicion no este vacio
+    if(this.validator.esCampoVacio(this.partido.competicion)) {
+      this.errorCompeticion = true
+    }
+     // valido que el campo id equipo local no sea = 0 que es sin seleccionar
+     if(this.partido.equipoLocal.id == 0) {
+      this.errorEquipoLocal = true
+    }
+
+     // valido que el campo  id equipo visitante no sea = 0 que es sin seleccionar
+     if(this.partido.equipoVisitante.id == 0) {
+      this.errorEquipoVisitante = true
+    }
+    // valido que la fecha tenga formato fecha
+    if(!this.validator.esFecha(this.fechaDatePicker)) {
+      this.errorFechaInicio = true
+    }
+    // si hay algún error partido no valido
+    if(this.errorCompeticion || this.errorEquipoLocal || this.errorEquipoVisitante || this.errorFechaInicio || this.errorJuego) {
+      this.partidoValido = false
+    }
+
   }
 
 }

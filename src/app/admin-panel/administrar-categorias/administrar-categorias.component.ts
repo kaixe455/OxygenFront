@@ -46,4 +46,8 @@ export class AdministrarCategoriasComponent implements OnInit {
     this.router.navigate(['modificarCategoria', id]);
   }
 
+  irCrearCategoria() {
+      this.router.navigate(['crearCategoria']);
+
+  }
 }

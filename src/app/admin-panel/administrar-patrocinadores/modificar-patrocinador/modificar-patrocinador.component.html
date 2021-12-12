@@ -11,16 +11,34 @@
           <label for="camboNombre" class="form-label">Nombre del Patrocinador</label>
           <input type="text" class="form-control" [(ngModel)]="patrocinador.nombre" name="nombre"
           #nombre="ngModel" id="campoNombre">
+          <div *ngIf="errorNombre" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoDescripcion" class="form-label">Descripcion</label>
           <textarea id="campoDescripcion" class="form-control" rows="10" [(ngModel)]="patrocinador.descripcion" name="descripcion"
           #descripcion="ngModel"></textarea>
+          <div *ngIf="errorDescripcion" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoWeb" class="form-label">Pagina web del patrocinador</label>
           <input type="text" class="form-control" [(ngModel)]="patrocinador.urlEmpresa" name="urlEmpresa"
-          #nombre="ngModel" id="campoWeb">
+          #urlEmpresa="ngModel" id="campoWeb">
+          <div *ngIf="errorWeb" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio y debe tener formato URL.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
               <span>Logo actual: </span>
@@ -29,8 +47,14 @@
               <br>
               <label for="validatedCustomFile">Logo del patrocinador</label>
               <br>
-              <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
-              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+              <input class="btn btn-oxygen mx-3 mb-3" type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button class="btn btn-oxygen mx-3 mb-3" (click)="zoomOut()">Zoom -</button> <button class="btn btn-oxygen mx-3 mb-3" (click)="zoomIn()">Zoom +</button>
+              <div *ngIf="errorLogo" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  El logo es obligatorio.
+                </div>
+              </div>
               <image-cropper
                 [imageChangedEvent]="imageChangedEvent"
                 (imageCropped)="imageCropped($event)"
@@ -38,12 +62,13 @@
                 [aspectRatio]="1 / 1"
                 [resizeToHeight]="150"
                 [transform]="transform"
-                format="png">
+                format="png"
+                class="recortarImagen">
               </image-cropper>
               <img class="previsualizacion" [src]="croppedImage" />
-              <div class="invalid-feedback">Formato incorrecto</div>
         </div>
         <br>
-        <button class="btn btn-oxygen" (click)="publicar()" >Actualizar patrocinador</button>
+        <button class="btn btn-oxygen mx-3" (click)="publicar()" >Actualizar patrocinador</button>
+        <button class="btn btn-oxygen mx-3" (click)="irGestionPatrocinadores()" >Volver</button>
   </form>
 </div>

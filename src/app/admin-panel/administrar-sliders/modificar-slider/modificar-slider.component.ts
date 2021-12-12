@@ -38,7 +38,9 @@ export class ModificarSliderComponent implements OnInit {
     }
 
     publicar() {
-      this.slider.imagen = this.croppedImage.split(",")[1]
+      if(this.croppedImage.split(",")[1]) {
+        this.slider.imagen = this.croppedImage.split(",")[1]
+      }
       this.sliderService.updateSlider(this.slider.id,this.slider).subscribe(data => {
         if(data) {
           this.notificacionService.success("Slider actualizado")

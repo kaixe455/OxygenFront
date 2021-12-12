@@ -1,19 +1,21 @@
 <div class="container-fluid bg-animated py-5">
   <div class="row">
     <div class="col-md-12 text-white text-center">
-      <h2>MODIFICAR SLIDER</h2>
+      <h2>MODIFICAR {{slider.nombre}}}</h2>
     </div>
   </div>
 </div>
 <div class="container">
-  <form #crearJuegoForm="ngForm" class="mt-2">
-        <div class="mb-3">
-          <span>{{slider.nombre}}</span>
-        </div>
-        <div class="mb-3">
-        <label for="validatedCustomFile">Imagen del slider</label>
-              <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
-              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+  <form #actualizarSliderForm="ngForm" class="mt-2">
+        <div class="mb-3 mt-3">
+              <span>Imagen actual: </span>
+              <br>
+              <img [src]="'data:image/png;base64,'+ slider.imagen" class="img-slider-imagen mb-3" alt="{{slider.nombre}}">
+              <br>
+              <label for="validatedCustomFile">Imagen del slider</label>
+              <br>
+              <input class="btn btn-oxygen mx-3"  type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button class="btn btn-oxygen mx-3" (click)="zoomOut()">Zoom -</button> <button class="btn btn-oxygen mx-3" (click)="zoomIn()">Zoom +</button>
               <image-cropper
                 [imageChangedEvent]="imageChangedEvent"
                 (imageCropped)="imageCropped($event)"
@@ -24,9 +26,9 @@
                 format="png">
               </image-cropper>
               <img class="previsualizacion" [src]="croppedImage" />
-              <div class="invalid-feedback">Formato incorrecto</div>
         </div>
         <br>
-        <button class="btn btn-oxygen" (click)="publicar()" >Actualizar Slider</button>
+        <button class="btn btn-oxygen mx-3" (click)="publicar()" >Actualizar Slider</button>
+        <button class="btn btn-oxygen mx-3" (click)="irGestionSliders()" >Volver</button>
   </form>
 </div>

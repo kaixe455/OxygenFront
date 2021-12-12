@@ -1,3 +1,6 @@
 .cropper-logo-patrocinador {
   max-height: 200px;
 }
+.recortarImagen {
+  max-width: 300px;
+}

@@ -15,16 +15,27 @@
               id="campoJuego"
               [items]="juegos"
               bindLabel="nombre"
-              bindValue="id"
               appendTo="body"
               [(ngModel)]="partido.juego"
           >
           </ng-select>
+          <div *ngIf="errorJuego" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es obligatorio seleccionar un juego.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoCompeticion" class="form-label col-md-3">Competicion</label>
           <input type="text" class="form-control" [(ngModel)]="partido.competicion" name="competicion"
           #competicion="ngModel" id="campoCompeticion">
+          <div *ngIf="errorCompeticion" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoSubtitulo" class="form-label col-md-3">Equipo Local</label>
@@ -34,11 +45,16 @@
               id= "equipoLocal"
               [items]="equipos"
               bindLabel="nombre"
-              bindValue="id"
               appendTo="body"
               [(ngModel)]="partido.equipoLocal"
           >
           </ng-select>
+          <div *ngIf="errorEquipoLocal" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es obligatorio elegir equipo local.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoSubtitulo" class="form-label col-md-3">Equipo Visitante</label>
@@ -48,11 +64,16 @@
               id="equipoVisitante"
               [items]="equipos"
               bindLabel="nombre"
-              bindValue="id"
               appendTo="body"
               [(ngModel)]="partido.equipoVisitante"
           >
           </ng-select>
+          <div *ngIf="errorEquipoVisitante" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es obligatorio elegir equipo visitante.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoFechaInicio" class="form-label col-md-3">Fecha de inicio</label>
@@ -63,8 +84,15 @@
               <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"  type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
             </div>
           </div>
+          <div *ngIf="errorFechaInicio" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo debe tener formato fecha.
+            </div>
+          </div>
         </div>
         <br>
-        <button class="btn btn-oxygen" (click)="crearPartido();">Publicar Partido</button>
+        <button class="btn btn-oxygen mx-3" (click)="crearPartido()">Publicar Partido</button>
+        <button class="btn btn-oxygen mx-3" (click)="irAdministrarPartidos()">Volver</button>
   </form>
 </div>

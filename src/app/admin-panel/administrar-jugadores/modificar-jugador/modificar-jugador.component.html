@@ -11,11 +11,23 @@
           <label for="campoNombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" [(ngModel)]="jugador.nombre" name="nombre"
           #nombre="ngModel" id="campoNombre">
+          <div *ngIf="errorNombre" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoApellido1" class="form-label">Primer Apellido</label>
           <input type="text" class="form-control" [(ngModel)]="jugador.apellido1" name="apellido1"
           #apellido1="ngModel" id="campoApellido1">
+          <div *ngIf="errorPrimerApellido" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoApellido2" class="form-label">Segundo Apellido</label>
@@ -26,6 +38,12 @@
           <label for="campoNickname" class="form-label">Nickname</label>
           <input type="text" class="form-control" [(ngModel)]="jugador.nickname" name="nickname"
           #nickname="ngModel" id="campoNickname">
+          <div *ngIf="errorNickname" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoJuego" class="form-label col-md-3">Juego</label>
@@ -34,33 +52,61 @@
               name="campoJuego"
               id="campoJuego"
               [items]="juegos"
+              nginit
               bindLabel="nombre"
-              bindValue="id"
               appendTo="body"
               [(ngModel)]="jugador.juego"
           >
           </ng-select>
+          <div *ngIf="errorJuego" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es obligatorio seleccionar un juego.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoTwitter" class="form-label">Twitter</label>
           <input type="text" class="form-control" [(ngModel)]="jugador.twitter" name="twitter"
           #twitter="ngModel" id="campoTwitter">
+          <div *ngIf="errorTwitter" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Debe tener un formato url valido: https://www.google.es/
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoTwitch" class="form-label">Twitter</label>
           <input type="text" class="form-control" [(ngModel)]="jugador.twitch" name="twitch"
           #twitch="ngModel" id="campoTwitch">
+          <div *ngIf="errorTwitch" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Debe tener un formato url valido: https://www.google.es/
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="campoRolEquipo" class="form-label">Rol en el equipo</label>
           <input type="text" class="form-control" [(ngModel)]="jugador.rol_equipo" name="rol_equipo"
           #rol_equipo="ngModel" id="campoRolEquipo">
+          <div *ngIf="errorRol" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Advertencia:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Este campo es obligatorio.
+            </div>
+          </div>
         </div>
         <div class="mb-3">
+              <span>Foto actual: </span>
+              <br>
+              <img [src]="'data:image/png;base64,'+ jugador.foto" class="img-equipo-logo mb-3 mt-3" alt="{{jugador.nombre}}">
+              <br>
               <label for="validatedCustomFile">Foto del jugador</label>
               <br>
-              <input type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
-              <button (click)="zoomOut()">Zoom -</button> <button (click)="zoomIn()">Zoom +</button>
+              <input class="btn btn-oxygen mx-3" type="file" (change)="fileChangeEvent($event)" id="validatedCustomFile" required name="logo">
+              <button class="btn btn-oxygen mx-3" (click)="zoomOut()">Zoom -</button> <button class="btn btn-oxygen mx-3" (click)="zoomIn()">Zoom +</button>
               <image-cropper
                 [imageChangedEvent]="imageChangedEvent"
                 (imageCropped)="imageCropped($event)"
@@ -68,12 +114,13 @@
                 [aspectRatio]="1 / 1"
                 [resizeToWidth]="300"
                 [transform]="transform"
-                format="png">
+                format="png"
+                class="recortar-espacio">
               </image-cropper>
               <img class="previsualizacion" [src]="croppedImage" />
-              <div class="invalid-feedback">Formato incorrecto</div>
         </div>
         <br>
-        <button class="btn btn-oxygen" (click)="publicar()" >Actualizar jugador</button>
+        <button class="btn btn-oxygen mx-3" (click)="publicar()" >Actualizar jugador</button>
+        <button class="btn btn-oxygen mx-3" (click)="irAdministrarJugadores()" >Volver</button>
   </form>
 </div>

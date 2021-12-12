@@ -4,6 +4,7 @@ import { ImageTransform } from 'ngx-image-cropper';
 import { Juego } from 'src/app/model/juego';
 import { JuegoService } from 'src/app/services/juego.service';
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-crear-juego',
@@ -13,8 +14,11 @@ import { ToastrService } from 'ngx-toastr';
 export class CrearJuegoComponent implements OnInit {
 
   juego : Juego = new Juego()
+  errorNombre : boolean = false
+  errorLogo : boolean = false
+  juegoValido : boolean = true
 
-  constructor( private juegoService : JuegoService, private router: Router, private notificacionService : ToastrService ) { }
+  constructor( private juegoService : JuegoService, private router: Router, private notificacionService : ToastrService, private validator : ValidatorService ) { }
 
   ngOnInit(): void {
   }
@@ -33,19 +37,25 @@ export class CrearJuegoComponent implements OnInit {
 
     publicar() {
       this.juego.logo = this.croppedImage.split(",")[1]
-      console.log(this.juego)
-      this.juegoService.createJuego(this.juego).subscribe(data => {
-        if(data) {
-          this.notificacionService.success("Juego creado correctamente.")
-          this.irAdministrarJuego()
-          this.juego = new Juego()
-          this.imageChangedEvent = ''
-          this.croppedImage = ''
-          this.scale = 1
-          this.transform = {}
-        }
-      })
-
+      this.errorLogo = false
+      this.errorNombre = false
+      this.juegoValido = true
+      this.validarCampos()
+      if(this.juegoValido) {
+        this.juegoService.createJuego(this.juego).subscribe(data => {
+          if(data) {
+            this.notificacionService.success("Juego creado correctamente.")
+            this.irAdministrarJuego()
+            this.juego = new Juego()
+            this.imageChangedEvent = ''
+            this.croppedImage = ''
+            this.scale = 1
+            this.transform = {}
+          }
+        })
+      }else{
+        this.notificacionService.error("Error en algún campo del formulario")
+      }
     }
 
     zoomOut() {
@@ -70,6 +80,22 @@ export class CrearJuegoComponent implements OnInit {
 
     irAdministrarJuego () {
       this.router.navigate(['administrarJuegos'])
+    }
+
+    validarCampos() {
+
+      // valido que el campo nombre no esté vacio
+      if(this.validator.esCampoVacio(this.juego.nombre)) {
+        this.errorNombre = true
+      }
+      // valido que el campo logo no este vacio
+      if(this.validator.esCampoVacio(this.juego.logo)) {
+        this.errorLogo = true
+      }
+      if(this.errorLogo || this.errorNombre) {
+        this.juegoValido = false
+      }
+
     }
 
 }

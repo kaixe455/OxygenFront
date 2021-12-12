@@ -1,3 +1,7 @@
 .img-patrocinador-logo {
   max-height: 100px;
 }
+
+.recortarImagen {
+  max-width: 300px;
+}

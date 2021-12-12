@@ -41,4 +41,8 @@ export class EditarNoticiasComponent implements OnInit {
     this.router.navigate(['modificarNoticia', id]);
   }
 
+  irCrearNoticia() {
+    this.router.navigate(['crearNoticias'])
+  }
+
 }
