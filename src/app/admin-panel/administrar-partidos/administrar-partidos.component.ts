@@ -29,8 +29,9 @@ export class AdministrarPartidosComponent implements OnInit {
   borrarPartido(id:number) {
     this.partidosService.deletePartidoById(id);
     this.notificacionService.success("Partido eliminado correctamente.")
-    this.obtenerPartidos();
-    this.irEditarPartidos();
+    setTimeout(()=>{
+      this.ngOnInit()
+    }, 100)
   }
 
   irEditarPartidos () {

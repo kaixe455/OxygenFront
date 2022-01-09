@@ -29,8 +29,9 @@ export class EditarNoticiasComponent implements OnInit {
   borrarNoticia(id:number) {
     this.noticiasService.deleteNoticiaById(id)
     this.notificacionService.success("Noticia eliminada correctamente")
-    this.obtenerNoticias()
-    this.irEditarNoticias()
+    setTimeout(()=>{
+      this.ngOnInit()
+    }, 100)
   }
 
   irEditarNoticias () {

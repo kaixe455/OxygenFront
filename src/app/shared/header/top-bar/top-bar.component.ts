@@ -51,7 +51,7 @@ export class TopBarComponent implements OnInit {
 
   logOut() {
     this.usuarioService.logOutUser()
-    this.notificacionService.success("Sesión cerrado con exito")
+    this.notificacionService.success("Sesión cerrada con éxito")
   }
 
   irModificarPerfil() {

@@ -29,8 +29,9 @@ export class AdministrarJugadoresComponent implements OnInit {
   borrarJugador(id:number) {
     this.jugadoresService.deleteJugadorById(id)
     this.notificacionService.success("Jugador borrado correctamente")
-    this.obtenerJugadores()
-    this.irGestionarJugadores();
+    setTimeout(()=>{
+      this.ngOnInit()
+    }, 100)
   }
 
   irGestionarJugadores () {

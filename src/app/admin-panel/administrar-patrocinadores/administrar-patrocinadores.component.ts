@@ -29,8 +29,9 @@ export class AdministrarPatrocinadoresComponent implements OnInit {
   borrarPatrocinador(id:number) {
     this.patrocinadorService.deletePatrocinadorById(id)
     this.notificacionService.success("Patrocinador eliminado.")
-    this.obtenerPatrocinadores()
-    this.irGestionarPatrocinadores();
+    setTimeout(()=>{
+      this.ngOnInit()
+  }, 100);
   }
 
   irGestionarPatrocinadores () {

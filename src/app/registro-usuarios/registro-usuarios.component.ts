@@ -122,7 +122,6 @@ export class RegistroUsuariosComponent implements OnInit {
       this.usuarioValido = false
     }
 
-
   }
 
 }

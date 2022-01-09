@@ -23,8 +23,8 @@ export class CategoriaService {
   }
 
   deleteCategoriaById(id : number) {
-    return this.http.delete(this.restUrl+'borrarCategoria/'+id).subscribe(data => {
-      console.log(data);})
+    this.http.delete(this.restUrl+'borrarCategoria/'+id).subscribe(data => {
+      return data})
   }
 
   getCategoriaById(id: number): Observable<any> {

@@ -21,9 +21,13 @@ export class LoginUsuariosComponent implements OnInit {
 
   login() {
     this.usuarioService.login(this.usuario.correoElectronico,this.usuario.password).subscribe(logged => {
-      localStorage.setItem('user', JSON.stringify(logged))
-      this.notificacionService.success("Inicio de sesión correcto")
-      this.router.navigate(['home'])
+      if(logged) {
+        localStorage.setItem('user', JSON.stringify(logged))
+        this.notificacionService.success("Inicio de sesión correcto")
+        this.router.navigate(['home'])
+      } else {
+        this.notificacionService.error("Datos de identificación erróneos")
+      }
     })
   }
 

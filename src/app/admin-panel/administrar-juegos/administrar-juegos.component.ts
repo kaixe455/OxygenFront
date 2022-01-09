@@ -14,10 +14,8 @@ export class AdministrarJuegosComponent implements OnInit {
 
   juegos: Juego[] = []
   juegos$!: Observable<Juego[]>;
-  cargado : boolean
 
   constructor(private juegosService : JuegoService, private router: Router, private notificacionService : ToastrService) {
-    this.cargado = false
    }
 
   ngOnInit(): void {
@@ -27,15 +25,15 @@ export class AdministrarJuegosComponent implements OnInit {
   obtenerJuegos() {
     this.juegos$ = this.juegosService.getJuegosAll()
     this.juegos$.subscribe(juegos => {this.juegos = juegos
-    this.cargado = true
     })
   }
 
   borrarJuego(id:number) {
     this.juegosService.deleteJuegoById(id)
     this.notificacionService.success("Juego eliminado correctamente")
-    this.cargado = false
-    this.obtenerJuegos()
+    setTimeout(()=>{
+      this.ngOnInit()
+    }, 100)
   }
 
   irAdministrarJuegos () {

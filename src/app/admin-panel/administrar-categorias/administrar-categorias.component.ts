@@ -14,10 +14,8 @@ export class AdministrarCategoriasComponent implements OnInit {
 
   categorias: Categoria[] = []
   categorias$!: Observable<Categoria[]>;
-  cargado : boolean
 
   constructor(private categoriasService : CategoriaService, private router: Router, private notificacionService : ToastrService) {
-    this.cargado = false
    }
 
   ngOnInit(): void {
@@ -26,16 +24,16 @@ export class AdministrarCategoriasComponent implements OnInit {
 
   obtenerCategorias() {
     this.categorias$ = this.categoriasService.getCategoriasAll()
-    this.categorias$.subscribe(categorias => {this.categorias = categorias
-    this.cargado = true
-    })
+    this.categorias$.subscribe(categorias => this.categorias = categorias)
+    console.log(this.categorias)
   }
 
-  borrarCategoria(id:number) {
+   borrarCategoria(id:number) {
     this.categoriasService.deleteCategoriaById(id)
     this.notificacionService.success("Categoria eliminada")
-    this.cargado = false
-    this.obtenerCategorias()
+    setTimeout(()=>{
+      this.ngOnInit()
+  }, 100);
   }
 
   irAdministrarCategorias () {

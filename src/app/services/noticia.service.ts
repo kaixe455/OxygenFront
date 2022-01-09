@@ -25,7 +25,7 @@ export class NoticiaService {
 
   deleteNoticiaById(id : number) {
     return this.http.delete(this.restUrl+'borrarNoticia/'+id).subscribe(data => {
-      console.log(data);})
+      console.log(data)})
   }
 
   createNoticia(noticia: Object): Observable<Object> {

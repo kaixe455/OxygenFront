@@ -63,7 +63,7 @@ export class ValidatorService {
    // devuelvo true si las contraseñas son iguales
 
    validarPasswords (pass1 : number | string, pass2 : number | string ) : boolean {
-    if(!this.esCampoVacio(pass1) && this.esCampoVacio(pass2) && pass1 == pass2) {
+    if(!this.esCampoVacio(pass1) && !this.esCampoVacio(pass2) && pass1 == pass2) {
       return true
     } else {
       return false

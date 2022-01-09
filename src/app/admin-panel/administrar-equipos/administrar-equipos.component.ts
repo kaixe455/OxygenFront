@@ -29,8 +29,9 @@ export class AdministrarEquiposComponent implements OnInit {
   borrarEquipo(id:number) {
     this.equiposService.deleteEquipoById(id)
     this.notificacionService.success("Equipo eliminado correctamente")
-    this.obtenerEquipos()
-    this.irGestionarEquipos();
+    setTimeout(()=>{
+      this.ngOnInit()
+    }, 100)
   }
 
   irGestionarEquipos () {
@@ -39,6 +40,10 @@ export class AdministrarEquiposComponent implements OnInit {
 
   modificarEquipo(id:number) {
     this.router.navigate(['modificarEquipo', id])
+  }
+
+  irCrearEquipo () {
+    this.router.navigate(['crearEquipo'])
   }
 
 }
