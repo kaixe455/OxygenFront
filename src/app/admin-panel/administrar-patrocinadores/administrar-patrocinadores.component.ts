@@ -31,7 +31,7 @@ export class AdministrarPatrocinadoresComponent implements OnInit {
     this.notificacionService.success("Patrocinador eliminado.")
     setTimeout(()=>{
       this.ngOnInit()
-  }, 100);
+    }, 100)
   }
 
   irGestionarPatrocinadores () {
