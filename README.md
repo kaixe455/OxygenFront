@@ -12,6 +12,7 @@ This project is an informative website about Oxygen Gaming an esports club. In t
 - Spring boot 2
 - Bootstrap 5
 - Mysql
+- API Rest for backend
 
 ## 🚀 Project Preview
 
