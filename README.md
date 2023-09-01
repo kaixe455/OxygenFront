@@ -1,27 +1,42 @@
-# OxygenFront
+# Oxygen-Gaming: esports club
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+> 🧑‍🚀 **Oxygen Gaming** Look at this project!
 
-## Development server
+This project is an informative website about Oxygen Gaming an esports club. In this website the owner can add information using an admin menu that was created for him. It shows news, players, team matches and results, their sponsor. Also it has an user system where people can register. It has a role system which can be used to assign people different function as news writer or matches manager.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 👀 Stack
 
-## Code scaffolding
+- Java 14
+- Angular 12
+- HTML & CSS
+- Spring boot 2
+- Bootstrap 5
+- Mysql
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Project Preview
 
-## Build
+### Home
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Home preview](https://github.com/kaixe455/OxygenFront/blob/master/preview.png?raw=true)
 
-## Running unit tests
+### Team matches preview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Team Matches preview](https://github.com/kaixe455/OxygenFront/blob/master/preview1.png?raw=true)
 
-## Running end-to-end tests
+### Oxygen teams and players preview
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![Teams and players preview](https://github.com/kaixe455/OxygenFront/blob/master/teams.png?raw=true)
 
-## Further help
+### Register UI
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Register step 1 preview](https://github.com/kaixe455/OxygenFront/blob/master/register1.png?raw=true)
+
+![Register step 2 preview](https://github.com/kaixe455/OxygenFront/blob/master/register2.png?raw=true)
+
+### Oxygen Gaming footer preview
+
+![Oxygen gaming shop preview](https://github.com/kaixe455/OxygenFront/blob/master/footer.png?raw=true)
+
+### Oxygen Gaming admin menu
+
+![Oxygen gaming shop preview](https://github.com/kaixe455/OxygenFront/blob/master/admin.png?raw=true)
